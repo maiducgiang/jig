@@ -1,0 +1,41 @@
+library endpoint;
+
+const getUser = "/api/users/2";
+const getListNewFeed = "/posts?limit=100&page=1";
+const uploadImageAws = "/posts/s3-url/";
+const createPost = "/posts";
+const getMe = "/accounts/me";
+const updateReaction = "/posts/{postId}/reactions";
+const getPostById =
+    "/posts/{postId}/?parentComment={parentCommentCount}&childComment={childCommentCount}";
+const postAddComment = "/posts/{postId}/comments/";
+const getListProduct = "/products?limit=10&page={page}";
+const getDetailProduct = "/products/{productId}";
+const getMyBranch = "/my-brand";
+const getEvents = "/events";
+const getEventDetail = "/events/{eventId}";
+const getHomepage = "/homepage";
+const getMyProduct = "/accounts/order-statistics";
+const preOrderProduct = "/orders/pre-calc";
+const confirmOrderProduct = "/orders";
+const getListOrder = "/orders?limit=100&page=1&status=";
+const getOrderDetail = "/orders/{orderId}";
+const getProductStatistic = "/products/{productId}/statistics";
+const cancelOrder = "/orders/cancel";
+const createProduct = "/products";
+const updateBrand = "/boss/brand";
+const updateOrderStatus = "/orders/{orderId}";
+const getListRank = "/boss/ranks?page=1&limit=1000";
+const getRankDetail = "/boss/ranks/{rankId}";
+const deleteRank = "/boss/ranks/{rankId}";
+const updateRank = "/boss/ranks/{rankId}";
+const createRank = "/boss/ranks";
+const updateProduct = "/products/{productId}";
+const joinEvent = "/events/{eventId}";
+const getAffiliateUserTree = "/accounts/affiliate-tree";
+const getListOrderByUserAndProduct =
+    "/orders?limit=100&page=1&status=&user={userId}&productId={productId}";
+const createEvent = "/events";
+const getListNotifications = "/notifications";
+const getRevenueStatistics = "/accounts/order-revenue?month=";
+const getUserInfoByAffiliateKey = "/accounts/profile?key={referralId}";
