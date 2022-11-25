@@ -41,37 +41,27 @@ class HomeCubit extends Cubit<HomeState> {
         ReadIntervalTimeout: readIntervalTimeout,
         ReadTotalTimeoutConstant: readTotalTimeoutConstant,
         ReadTotalTimeoutMultiplier: readTotalTimeoutMulti);
+    port.readBytesSize = 8;
+    if (port.isOpened == false) port.open();
+    // port.readOnListenFunction = ((value) {
+    //   emit(state.copyWith(dataReceive: String.fromCharCodes(value)));
+    //   print("read: 1 " + String.fromCharCodes(value));
+    // });
 
-    print("connect" + (port.isOpened == true ? "success" : "fail"));
-    // port = SerialPort(
-    //   namePort,
-    //   openNow: true,
-    //   BaudRate: baudRate,
-    //   Parity: parity,
-    //   StopBits: stopBits,
-    //   ByteSize: byteSize,
-    //   // ReadIntervalTimeout: readIntervalTimeout,
-    //   // ReadTotalTimeoutConstant: readTotalTimeoutConstant,
-    //   // ReadTotalTimeoutMultiplier: readTotalTimeoutMulti
-    // );
-    port.readBytesOnListen(1024, (value) {
-      print("read COM $port:${String.fromCharCodes(value)}\n");
-      emit(state.copyWith(dataReceive: String.fromCharCodes(value)));
-    });
-    emit(state.copyWith(isActive: true));
-    //handleReceived();
+    print("connect ${port.isOpened == true ? "success" : "fail"}");
+    emit(state.copyWith(isActive: port.isOpened));
+    handleReceived();
   }
 
   Future<void> closePort() async {
+    port.close();
     emit(state.copyWith(isActive: false));
-
-    //if (port != null) port.close();
   }
 
   Future<bool> sendData(String message) async {
     if (port.isOpened == false) port.open();
     bool check = port.writeBytesFromString(message);
-    print("send message:${message}" + (check == false ? "fail" : "success"));
+    print("send message: ${message} " + (check == false ? "fail" : "success"));
     return check;
   }
 
@@ -80,15 +70,11 @@ class HomeCubit extends Cubit<HomeState> {
     //if (port.isOpened == false) port.open();
     //print(port.isOpened);
     //port.readOnListenFunction;
-    if (state.isActive == false) {
-      port.close();
-    } else {
-      port.readBytesOnListen(1024, (value) {
-        print("read COM $port:${String.fromCharCodes(value)}\n");
+    if (state.isActive == true) {
+      port.readBytesOnListen(50, (value) {
+        print("read 2 ${port.portName}:${String.fromCharCodes(value)}\n");
         emit(state.copyWith(dataReceive: String.fromCharCodes(value)));
       });
     }
-
-    //}
   }
 }
