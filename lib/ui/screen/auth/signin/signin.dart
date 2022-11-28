@@ -70,7 +70,7 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
         TextFormFieldInput(controller: emailController, hinText: "email"),
         SizedBox(
-          height: defaultPaddingScreen * 2,
+          height: defaultPaddingScreen,
         ),
         Text(
           "Mật khẩu",

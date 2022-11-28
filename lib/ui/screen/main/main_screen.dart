@@ -110,7 +110,7 @@ class _MainScreenState extends State<MainScreen> {
                   }),
                   child: Text(
                     "Cài đặt",
-                    style: primaryHeaderTitleStyle.copyWith(fontSize: 36.sp),
+                    style: primaryHeaderTitleStyle.copyWith(),
                   ),
                 )
               ],
@@ -130,7 +130,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 Text(
                   "Đăng xuất",
-                  style: primaryHeaderTitleStyle.copyWith(fontSize: 36.sp),
+                  style: primaryHeaderTitleStyle.copyWith(),
                 )
               ],
             )

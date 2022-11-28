@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jig/data/enum/enum_test_status.dart';
 import 'package:jig/data/model/question/question_model.dart';
 import 'package:jig/ui/screen/main/home/widget/grip_view_amont_question.dart';
+import 'package:jig/ui/screen/main/test/bluetooth/bluetooth.dart';
 import 'package:jig/ui/screen/main/test/info_device/info_device.dart';
+import 'package:jig/ui/screen/main/test/write_barcode/write_barcode.dart';
 import 'package:jig/ui/shared/base_screen.dart';
 import 'package:jig/ui/shared/base_test_screen.dart';
 import 'package:jig/ui/theme/constant.dart';
@@ -25,24 +27,12 @@ class _HomeScreenState extends State<HomeScreen> {
         status: SelectTestStatus.selected),
     Question(
         title: "Test 2",
-        child: Container(
-          child: Center(
-              child: Text(
-            "2",
-            style: primaryHeaderTitleStyle,
-          )),
-        ),
+        child: WriteBarcodeScreen(),
         resultStatus: ResultStatus.pass,
         status: SelectTestStatus.selected),
     Question(
         title: "Test 3",
-        child: Container(
-          child: Center(
-              child: Text(
-            "3",
-            style: primaryHeaderTitleStyle,
-          )),
-        ),
+        child: BluetoothScreen(),
         resultStatus: ResultStatus.pass,
         status: SelectTestStatus.selected),
     Question(

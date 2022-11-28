@@ -4,7 +4,7 @@ import 'package:jig/ui/theme/constant.dart';
 
 TextStyle get primaryHeaderTitleStyle {
   return TextStyle(
-      fontSize: 48.sp,
+      fontSize: 32.sp,
       color: primaryColor,
       fontWeight: FontWeight.bold,
       overflow: TextOverflow.ellipsis,
@@ -13,7 +13,7 @@ TextStyle get primaryHeaderTitleStyle {
 
 TextStyle get primaryTitleStyle {
   return TextStyle(
-      fontSize: 32.sp,
+      fontSize: 28.sp,
       color: Colors.black,
       fontWeight: FontWeight.w500,
       height: 1.3);

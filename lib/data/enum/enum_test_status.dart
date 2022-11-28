@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 enum TestStatus { doing, stop, end }
 
-enum ResultStatus { pass, doing, fail }
+enum ResultStatus { pass, check, doing, fail }
 
 extension ResultStatusExt on ResultStatus {
   String display() {
@@ -15,6 +15,8 @@ extension ResultStatusExt on ResultStatus {
         return "Đang kiểm tra";
       case ResultStatus.fail:
         return "FAIL:DỪNG TEST";
+      case ResultStatus.check:
+        return "CHECK";
     }
   }
 
@@ -26,6 +28,8 @@ extension ResultStatusExt on ResultStatus {
         return Colors.grey;
       case ResultStatus.fail:
         return const Color(0xffEB5757);
+      case ResultStatus.check:
+        return Colors.grey;
     }
   }
 }

@@ -1,32 +1,37 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jig/ui/shared/base_test_screen.dart';
 import 'package:jig/ui/theme/constant.dart';
 import 'package:jig/ui/theme/text_style.dart';
 
-class InfoDeviceScreen extends StatefulWidget {
-  const InfoDeviceScreen({super.key});
+import '../../../../../data/enum/enum_test_status.dart';
+
+class BluetoothScreen extends StatefulWidget {
+  const BluetoothScreen({super.key});
 
   @override
-  State<InfoDeviceScreen> createState() => _InfoDeviceScreenState();
+  State<BluetoothScreen> createState() => _BluetoothScreenState();
 }
 
-class _InfoDeviceScreenState extends State<InfoDeviceScreen> {
+class _BluetoothScreenState extends State<BluetoothScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseTestScreen(
+      resultStatus: ResultStatus.pass,
       child: Column(
         children: [
           SizedBox(
             height: defaultPaddingScreen * 2,
           ),
           Text(
-            "THÔNG TIN THIẾT BỊ",
+            "KẾT NỐI BLUETOOTH, WIFI",
             style: primaryHeaderTitleStyle.copyWith(color: Colors.black),
           ),
           SizedBox(
             height: defaultPaddingScreen * 2,
+          ),
+          SizedBox(
+            height: defaultPaddingScreen,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -34,15 +39,16 @@ class _InfoDeviceScreenState extends State<InfoDeviceScreen> {
               SizedBox(
                 width: 260.h,
                 child: Text(
-                  "Model:",
+                  "Wi-Fi:",
                   style: primaryTitleStyle.copyWith(color: Colors.grey),
                 ),
               ),
               SizedBox(
                 width: 600.h,
                 child: Text(
-                  "Model 1234abc",
-                  style: primaryTitleStyle.copyWith(color: Colors.black),
+                  "Kết nối thành công",
+                  style: primaryTitleStyle.copyWith(
+                      color: const Color(0xff0DC301)),
                 ),
               ),
             ],
@@ -56,15 +62,16 @@ class _InfoDeviceScreenState extends State<InfoDeviceScreen> {
               SizedBox(
                 width: 260.h,
                 child: Text(
-                  "Firmware:",
+                  "Bluetooth:",
                   style: primaryTitleStyle.copyWith(color: Colors.grey),
                 ),
               ),
               SizedBox(
                 width: 600.h,
                 child: Text(
-                  "Firmware version 123456",
-                  style: primaryTitleStyle.copyWith(color: Colors.black),
+                  "Kết nối thành công",
+                  style: primaryTitleStyle.copyWith(
+                      color: const Color(0xff0DC301)),
                 ),
               ),
             ],
