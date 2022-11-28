@@ -1,175 +1,105 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jig/ui/screen/main/feed/feed_screen.dart';
-import 'package:jig/ui/screen/main/home/home_screen.dart';
-import 'package:jig/ui/screen/main/notifications/notification_screen.dart';
-import 'package:jig/ui/screen/main/profile/profile_screen.dart';
-import 'package:jig/ui/screen/main/system/system_screen.dart';
-import 'package:jig/ui/theme/constant.dart';
 
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jig/ui/router/router.gr.dart';
+import 'package:jig/ui/theme/constant.dart';
+import 'package:jig/ui/theme/text_style.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({super.key});
 
   @override
-  _MainScreenState createState() => _MainScreenState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
-  var tabIndex = 0;
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  final _screenList = [
-    HomeScreen(),
-    SystemScreen(),
-    FeedScreen(),
-    NotificationScreen(),
-    ProfileScreen()
-  ];
-
-  void changeTabIndex(int index) {
-    setState(() {
-      tabIndex = index;
-    });
-  }
-
-  getScreen() => _screenList[tabIndex];
-
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        return false;
-      },
-      child: Scaffold(
-        body: getScreen(),
-        bottomNavigationBar: Container(
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.5),
-                spreadRadius: 2,
-                blurRadius: 3,
-                offset: const Offset(0, 4), // changes position of shadow
-              ),
-            ],
-          ),
-          child: BottomNavigationBar(
-            selectedFontSize: 12.sp,
-            unselectedFontSize: 12.sp,
-            backgroundColor: Colors.white,
-            // selectedLabelStyle: TextStyle(fontSize: ),
-            onTap: changeTabIndex,
-            currentIndex: tabIndex,
-            type: BottomNavigationBarType.fixed,
-            selectedItemColor: primaryColor,
-            unselectedItemColor: const Color(0xFF102536),
-            elevation: 0,
-            items: [
-              BottomNavigationBarItem(
-                  icon: Container(
-                    padding: EdgeInsets.only(bottom: 6.h, top: 6.h),
-                    width: 30.w,
-                    height: 30.w,
-                    child: SvgPicture.asset(
-                      "assets/images/icon/icons_bottombar/home.svg",
-                      //color: primaryColor,
-                    ),
-                  ),
-                  activeIcon: Container(
-                    padding: EdgeInsets.only(bottom: 6.h, top: 6.h),
-                    width: 30.w,
-                    height: 30.w,
-                    child: SvgPicture.asset(
-                      "assets/images/icon/icons_bottombar/home.svg",
-                      color: primaryColor,
-                    ),
-                  ),
-                  label: 'Trang chủ'),
-              BottomNavigationBarItem(
-                  icon: Container(
-                    padding: EdgeInsets.only(bottom: 6.h, top: 6.h),
-                    width: 30.w,
-                    height: 30.w,
-                    child: SvgPicture.asset(
-                      "assets/images/icon/icons_bottombar/system.svg",
-                      //color: primaryColor,
-                    ),
-                  ),
-                  activeIcon: Container(
-                    padding: EdgeInsets.only(bottom: 6.h, top: 6.h),
-                    width: 30.w,
-                    height: 30.w,
-                    child: SvgPicture.asset(
-                      "assets/images/icon/icons_bottombar/system.svg",
-                      color: primaryColor,
-                    ),
-                  ),
-                  label: 'Hệ thống'),
-              BottomNavigationBarItem(
-                  icon: Container(
-                    width: 30.w,
-                    height: 30.w,
-                    padding: EdgeInsets.only(bottom: 6.h, top: 6.h),
-                    child: SvgPicture.asset(
-                      "assets/images/icon/icons_bottombar/new.svg",
-                      //color: primaryColor,
-                    ),
-                  ),
-                  activeIcon: Container(
-                    width: 30.w,
-                    height: 30.w,
-                    padding: EdgeInsets.only(bottom: 6.h, top: 6.h),
-                    child: SvgPicture.asset(
-                      "assets/images/icon/icons_bottombar/new.svg",
-                      color: primaryColor,
-                    ),
-                  ),
-                  label: 'Bảng tin'),
-              BottomNavigationBarItem(
-                  icon: Container(
-                      padding: EdgeInsets.only(bottom: 6.h, top: 6.h),
-                      width: 30.w,
-                      height: 30.w,
-                      child: SvgPicture.asset(
-                        "assets/images/icon/icons_bottombar/notification.svg",
-                        //color: primaryColor,
-                      )),
-                  activeIcon: Container(
-                      padding: EdgeInsets.only(bottom: 6.h, top: 6.h),
-                      width: 30.w,
-                      height: 30.w,
-                      child: SvgPicture.asset(
-                        "assets/images/icon/icons_bottombar/notification.svg",
-                        color: primaryColor,
-                      )),
-                  label: 'Thông báo'),
-              BottomNavigationBarItem(
-                  icon: Container(
-                      padding: EdgeInsets.only(bottom: 6.h, top: 6.h),
-                      width: 30.w,
-                      height: 30.w,
-                      child: SvgPicture.asset(
-                        "assets/images/icon/icons_bottombar/account.svg",
-                        //color: primaryColor,
-                      )),
-                  activeIcon: Container(
-                      padding: EdgeInsets.only(bottom: 6.h, top: 6.h),
-                      width: 30.w,
-                      height: 30.w,
-                      child: SvgPicture.asset(
-                        "assets/images/icon/icons_bottombar/account.svg",
-                        color: primaryColor,
-                      )),
-                  label: 'Tài khoản')
-            ],
-          ),
+    return Scaffold(
+      body: SafeArea(
+          child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(color: backgroundColor),
+        child: body(context),
+      )),
+    );
+  }
+
+  Widget body(BuildContext context) {
+    return Column(
+      children: [
+        header(context),
+        const Divider(
+          thickness: 2,
+          color: Colors.white,
         ),
+        InkWell(
+          onTap: (() {
+            context.router.push(const HomePage());
+          }),
+          child: Container(
+            width: double.infinity,
+            height: double.infinity,
+            color: Colors.white,
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget header(BuildContext context) {
+    return Container(
+      height: 88.h,
+      padding: EdgeInsets.symmetric(
+        horizontal: defaultPaddingScreen,
       ),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Text(
+          "JIG TEST",
+          style: primaryHeaderTitleStyle.copyWith(),
+        ),
+        Row(
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.settings,
+                  size: 42.sp,
+                  color: primaryColor,
+                ),
+                SizedBox(
+                  width: defaultPaddingScreen / 2,
+                ),
+                Text(
+                  "Cài đặt",
+                  style: primaryHeaderTitleStyle.copyWith(fontSize: 36.sp),
+                )
+              ],
+            ),
+            SizedBox(
+              width: defaultPaddingScreen * 2,
+            ),
+            Row(
+              children: [
+                Icon(
+                  Icons.output_outlined,
+                  size: 42.sp,
+                  color: primaryColor,
+                ),
+                SizedBox(
+                  width: defaultPaddingScreen / 2,
+                ),
+                Text(
+                  "Đăng xuất",
+                  style: primaryHeaderTitleStyle.copyWith(fontSize: 36.sp),
+                )
+              ],
+            )
+          ],
+        )
+      ]),
     );
   }
 }

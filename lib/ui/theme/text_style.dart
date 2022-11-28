@@ -4,15 +4,15 @@ import 'package:jig/ui/theme/constant.dart';
 
 TextStyle get primaryHeaderTitleStyle {
   return TextStyle(
-      fontSize: 18.sp,
-      color: Colors.black,
-      fontWeight: FontWeight.w500,
+      fontSize: 48.sp,
+      color: primaryColor,
+      fontWeight: FontWeight.bold,
       height: 1.3);
 }
 
 TextStyle get primaryTitleStyle {
   return TextStyle(
-      fontSize: 14,
+      fontSize: 32.sp,
       color: Colors.black,
       fontWeight: FontWeight.w500,
       height: 1.3);

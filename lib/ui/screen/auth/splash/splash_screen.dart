@@ -10,7 +10,7 @@ import 'package:jig/data/repository/main/main_repository.dart';
 import 'package:jig/injection.dart';
 import 'package:jig/ui/app_cubit.dart';
 import 'package:jig/ui/router/router.gr.dart';
-import 'package:jig/ui/screen/main/home/home_screen.dart';
+
 import 'package:jig/ui/services/account_services.dart';
 import 'package:jig/ui/theme/box_decoration.dart';
 import 'package:jig/ui/theme/constant.dart';
@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
     final String userId = await AccountServices().getUserId();
     // if (token != '' && userId != '') {
     //   await handleGetAccountMe();
-    context.router.replace(const HomePage());
+    context.router.replace(const SignInPage());
     // } else {
     //   context.router.push(const WelcomePage());
     // }

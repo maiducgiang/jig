@@ -96,17 +96,17 @@ class _TextFormFieldInputState extends State<TextFormFieldInput> {
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(defaultBorderRadius),
             borderSide: const BorderSide(
-                width: 1, color: Colors.black /*color: primaryColor*/
+                width: 0.25, color: Colors.black /*color: primaryColor*/
                 )),
         disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(defaultBorderRadius),
             borderSide: const BorderSide(
-                width: 1, color: Colors.black /*color: primaryColor*/
+                width: 0.25, color: Colors.black /*color: primaryColor*/
                 )),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(defaultBorderRadius),
             borderSide: const BorderSide(
-                width: 1,
+                width: 0.25,
                 /*color: primaryColor*/
                 color: Colors.black)),
         contentPadding:

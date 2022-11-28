@@ -61,8 +61,8 @@ class PrimaryButton extends StatelessWidget {
       borderRadius: borderRadius,
       onTap: onPressed ?? () {},
       child: Container(
-        width: 200,
-        height: 38.h,
+        //width: 200,
+        height: 72.h,
         decoration: BoxDecoration(
           color: backgroundColor ?? Colors.black, //primaryColor,
           border: Border.all(width: borderWidth!, color: borderColor!),
@@ -70,7 +70,7 @@ class PrimaryButton extends StatelessWidget {
               borderRadius ?? BorderRadius.circular(defaultBorderRadius),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: 8,
             vertical: 8,
           ),

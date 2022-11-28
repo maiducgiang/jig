@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-const primaryColor = Color(0xFFFF644E);
+const primaryColor = Color(0xFF0079D7);
+const primaryColor2 = Color(0xFFE2ECF8);
 const secondaryColor = Color(0xFF333333);
 const titleColor = Color(0xFF222222);
 const contentColor = Color(0xFF777777);
 const borderColor = Color(0xFFDDDDDD);
 const errorColor = Color(0xFFF03738);
-const backgroundColor = Color(0xffEDEFF4);
+const backgroundColor = Color(0xffE2ECF8);
 
 const darkColor = Color(0xFF2B2B2B);
 const darkGreyClr = Color(0xFF121212);
@@ -20,7 +21,7 @@ const contentColorDarkTheme = Color(0xFFF5FCF9);
 const backgroundTextField = Color(0xFFF4F5F7);
 const greyText = Color(0xFFB4B4B4);
 
-var defaultPaddingScreen = 10.w;
+var defaultPaddingScreen = 20.w;
 var defaultBorderRadius = 10.r;
 var textSize = 14.sp;
 var subTextSize = 12.sp;

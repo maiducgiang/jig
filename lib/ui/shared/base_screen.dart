@@ -1,135 +1,94 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:jig/ui/theme/constant.dart';
 import 'package:jig/ui/theme/text_style.dart';
 
-class BaseScreen extends StatelessWidget {
-  const BaseScreen(
-      {Key? key,
-      this.title,
-      this.leading,
-      this.trailing,
-      required this.child,
-      this.elevation = 0.5,
-      this.onPress,
-      this.titleWidget,
-      this.floatingActionButton,
-      this.backgroundColor,
-      this.titleColor = primaryColor})
-      : super(key: key);
-
-  final String? title;
-  final List<Widget>? trailing;
-  final Widget? leading;
+class BaseScreenWindow extends StatefulWidget {
+  const BaseScreenWindow({super.key, required this.child});
   final Widget child;
-  final double? elevation;
-  final Function()? onPress;
-  final Widget? titleWidget;
-  final Widget? floatingActionButton;
-  final Color? backgroundColor;
-  final Color? titleColor;
-
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      key: key,
-      resizeToAvoidBottomInset: true,
-      appBar: title != null
-          ? AppBar(
-              backgroundColor: backgroundColor ?? Colors.white,
-              actions: trailing,
-              leading: leading,
-              automaticallyImplyLeading: leading != null ? true : false,
-              elevation: elevation,
-              centerTitle: true,
-              title: Text(title!,
-                  style: primaryTitleStyle.copyWith(
-                      color: titleColor, fontSize: 18.sp)))
-          : null,
-      floatingActionButton: floatingActionButton,
-      body: SafeArea(
-        child: GestureDetector(
-          child: child,
-          onTap: () {
-            FocusScopeNode currentFocus = FocusScope.of(context);
-            if (!currentFocus.hasPrimaryFocus) {
-              currentFocus.unfocus();
-            }
-          },
-        ),
-      ),
-    );
-  }
+  State<BaseScreenWindow> createState() => _BaseScreenWindowState();
 }
 
-class BaseScreenSecond extends StatelessWidget {
-  // ignore: use_key_in_widget_constructors
-  const BaseScreenSecond(
-      {required this.title,
-      this.leading,
-      this.trailing,
-      required this.child,
-      this.elevation = 0.5,
-      this.onPress,
-      this.titleWidget,
-      this.floatingActionButton,
-      this.backgroundColor,
-      this.titleColor = primaryColor,
-      this.action})
-      : super();
-
-  final String title;
-  final List<Widget>? trailing;
-  final Widget? leading;
-  final Widget child;
-  final double? elevation;
-  final Function()? onPress;
-  final Widget? titleWidget;
-  final Widget? floatingActionButton;
-  final Color? backgroundColor;
-  final Color? titleColor;
-  final Widget? action;
+class _BaseScreenWindowState extends State<BaseScreenWindow> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: key,
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(title,
-            style: primaryTitleStyle.copyWith(
-                color: secondaryColor, /*titleColor,*/ fontSize: 18.sp)),
-        elevation: 0,
-        actions: [SizedBox(width: 50.w, child: action)],
-        leading: IconButton(
-          icon: Icon(
-            Ionicons.chevron_back_outline,
-            size: 23.sp,
-            color: secondaryColor, //primaryColor,
-          ),
-          onPressed: () {
-            context.router.pop();
-          },
-        ),
-      ),
-      //backgroundColor: Colors.white,
-      floatingActionButton: floatingActionButton,
-      body: Container(
+      body: SafeArea(
+          child: Container(
         width: double.infinity,
         height: double.infinity,
-        padding: EdgeInsets.zero,
-        child: GestureDetector(
-          child: child,
-          onTap: () {
-            FocusScopeNode currentFocus = FocusScope.of(context);
-            if (!currentFocus.hasPrimaryFocus) {
-              currentFocus.unfocus();
-            }
-          },
+        decoration: const BoxDecoration(color: backgroundColor),
+        child: body(context),
+      )),
+    );
+  }
+
+  Widget body(BuildContext context) {
+    return Column(
+      children: [
+        header(context),
+        const Divider(
+          thickness: 2,
+          color: Colors.white,
         ),
+        widget.child
+      ],
+    );
+  }
+
+  Widget header(BuildContext context) {
+    return Container(
+      height: 88.h,
+      padding: EdgeInsets.symmetric(
+        horizontal: defaultPaddingScreen,
       ),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Text(
+          "JIG TEST",
+          style: primaryHeaderTitleStyle.copyWith(),
+        ),
+        Row(
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.settings,
+                  size: 42.sp,
+                  color: primaryColor,
+                ),
+                SizedBox(
+                  width: defaultPaddingScreen / 2,
+                ),
+                Text(
+                  "Cài đặt",
+                  style: primaryHeaderTitleStyle.copyWith(fontSize: 36.sp),
+                )
+              ],
+            ),
+            SizedBox(
+              width: defaultPaddingScreen * 2,
+            ),
+            Row(
+              children: [
+                Icon(
+                  Icons.output_outlined,
+                  size: 42.sp,
+                  color: primaryColor,
+                ),
+                SizedBox(
+                  width: defaultPaddingScreen / 2,
+                ),
+                Text(
+                  "Đăng xuất",
+                  style: primaryHeaderTitleStyle.copyWith(fontSize: 36.sp),
+                )
+              ],
+            )
+          ],
+        )
+      ]),
     );
   }
 }
