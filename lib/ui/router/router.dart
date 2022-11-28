@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:jig/ui/router/app_router.dart';
 import 'package:jig/ui/screen/auth/signin/signin.dart';
 import 'package:jig/ui/screen/auth/splash/splash_screen.dart';
+import 'package:jig/ui/screen/main/home/home_screen.dart';
+import 'package:jig/ui/screen/main/main_screen.dart';
 import 'package:jig/ui/screen/main/setting/setting.dart';
-
-import '../screen/main/home/home_screen.dart';
-import '../screen/main/main_screen.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',

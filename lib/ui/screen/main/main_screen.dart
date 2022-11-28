@@ -41,7 +41,7 @@ class _MainScreenState extends State<MainScreen> {
           }),
           child: Container(
             width: double.infinity,
-            height: double.infinity,
+            height: 200.h,
             color: Colors.white,
           ),
         )

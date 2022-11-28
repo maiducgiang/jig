@@ -32,6 +32,9 @@ class _BaseScreenWindowState extends State<BaseScreenWindow> {
         const Divider(
           thickness: 2,
           color: Colors.white,
+          height: 0,
+          indent: 0,
+          endIndent: 0,
         ),
         widget.child
       ],
