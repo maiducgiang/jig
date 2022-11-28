@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jig/foundation/extension/validation.dart';
 import '../../../theme/constant.dart';
 
@@ -18,6 +17,7 @@ class TextFormFieldInput extends StatefulWidget {
       this.password,
       this.onChanged,
       this.enable,
+      this.isBarcode,
       this.maxLine,
       this.onTap})
       : super();
@@ -25,6 +25,7 @@ class TextFormFieldInput extends StatefulWidget {
   final String hinText;
   final String? error;
   final bool? isPass;
+  final bool? isBarcode;
   final bool? isUsername;
   final bool? isEmail;
   final bool? isPhone;
@@ -80,7 +81,7 @@ class _TextFormFieldInputState extends State<TextFormFieldInput> {
         errorText: widget.error /*'Error message'*/,
         hintText: widget.hinText,
         focusColor: primaryColor,
-        suffixIcon: widget.isPass == true
+        suffixIcon: widget.isBarcode == true
             ? InkWell(
                 onTap: (() {
                   setState(() {

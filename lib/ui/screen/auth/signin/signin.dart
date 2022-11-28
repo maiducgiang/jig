@@ -24,13 +24,16 @@ class _SignInScreenState extends State<SignInScreen> {
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(color: backgroundColor),
-        child: Center(
-          child: Container(
-            width: 553.w,
-            height: 693.h,
-            decoration: const BoxDecoration(color: Colors.white),
-            child: body(context),
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 553.w,
+              // height: 693.h,
+              decoration: const BoxDecoration(color: Colors.white),
+              child: body(context),
+            ),
+          ],
         ),
       ),
     );
@@ -39,58 +42,64 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget body(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: defaultPaddingScreen * 6),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        SizedBox(
-          height: defaultPaddingScreen * 3,
-        ),
-        SizedBox(
-          child: Align(
-            alignment: Alignment.center,
-            child: Text(
-              "JIG TEST",
-              textAlign: TextAlign.center,
-              style: primaryHeaderTitleStyle.copyWith(
-                  fontSize: 48.sp,
-                  color: primaryColor,
-                  fontWeight: FontWeight.bold),
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: defaultPaddingScreen * 3,
             ),
-          ),
-        ),
-        SizedBox(
-          height: defaultPaddingScreen * 2,
-        ),
-        Text(
-          "Tên đăng nhập",
-          style: primaryTitleStyle.copyWith(
-            fontSize: 32.sp,
-          ),
-        ),
-        SizedBox(
-          height: defaultPaddingScreen,
-        ),
-        TextFormFieldInput(controller: emailController, hinText: "email"),
-        SizedBox(
-          height: defaultPaddingScreen,
-        ),
-        Text(
-          "Mật khẩu",
-          style: primaryTitleStyle.copyWith(fontSize: 32.sp),
-        ),
-        SizedBox(
-          height: defaultPaddingScreen,
-        ),
-        TextFormFieldInput(controller: passController, hinText: "password"),
-        SizedBox(
-          height: defaultPaddingScreen * 2,
-        ),
-        PrimaryButton(
-          label: "Đăng nhập",
-          backgroundColor: primaryColor,
-          onPressed: (() {
-            context.router.push(const MainPage());
-          }),
-        )
-      ]),
+            SizedBox(
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  "JIG TEST",
+                  textAlign: TextAlign.center,
+                  style: primaryHeaderTitleStyle.copyWith(
+                      fontSize: 48.sp,
+                      color: primaryColor,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: defaultPaddingScreen * 2,
+            ),
+            Text(
+              "Tên đăng nhập",
+              style: primaryTitleStyle.copyWith(
+                fontSize: 32.sp,
+              ),
+            ),
+            SizedBox(
+              height: defaultPaddingScreen,
+            ),
+            TextFormFieldInput(controller: emailController, hinText: "email"),
+            SizedBox(
+              height: defaultPaddingScreen,
+            ),
+            Text(
+              "Mật khẩu",
+              style: primaryTitleStyle.copyWith(fontSize: 32.sp),
+            ),
+            SizedBox(
+              height: defaultPaddingScreen,
+            ),
+            TextFormFieldInput(controller: passController, hinText: "password"),
+            SizedBox(
+              height: defaultPaddingScreen * 2,
+            ),
+            PrimaryButton(
+              label: "Đăng nhập",
+              backgroundColor: primaryColor,
+              onPressed: (() {
+                context.router.push(const MainPage());
+              }),
+            ),
+            SizedBox(
+              height: defaultPaddingScreen * 2,
+            ),
+          ]),
     );
   }
 }

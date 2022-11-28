@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 const primaryColor = Color(0xFF0079D7);
 const primaryColor2 = Color(0xFFE2ECF8);
+const primaryColor3 = Color(0xFF0DC301);
 const secondaryColor = Color(0xFF333333);
 const titleColor = Color(0xFF222222);
 const contentColor = Color(0xFF777777);

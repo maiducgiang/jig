@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:jig/ui/theme/constant.dart';
 
 enum TestStatus { doing, stop, end }
 
@@ -23,7 +24,7 @@ extension ResultStatusExt on ResultStatus {
   Color color() {
     switch (this) {
       case ResultStatus.pass:
-        return const Color(0xff0DC301);
+        return primaryColor3;
       case ResultStatus.doing:
         return Colors.grey;
       case ResultStatus.fail:
@@ -42,7 +43,7 @@ extension SelectStatusExt on SelectTestStatus {
       case SelectTestStatus.select:
         return const Color(0xff0079D7);
       case SelectTestStatus.selected:
-        return const Color(0xff0DC301);
+        return primaryColor3;
       case SelectTestStatus.notSelect:
         return const Color(0xffCCCBCB);
     }

@@ -47,8 +47,7 @@ class _BluetoothScreenState extends State<BluetoothScreen> {
                 width: 600.h,
                 child: Text(
                   "Kết nối thành công",
-                  style: primaryTitleStyle.copyWith(
-                      color: const Color(0xff0DC301)),
+                  style: primaryTitleStyle.copyWith(color: primaryColor3),
                 ),
               ),
             ],
@@ -70,8 +69,7 @@ class _BluetoothScreenState extends State<BluetoothScreen> {
                 width: 600.h,
                 child: Text(
                   "Kết nối thành công",
-                  style: primaryTitleStyle.copyWith(
-                      color: const Color(0xff0DC301)),
+                  style: primaryTitleStyle.copyWith(color: primaryColor3),
                 ),
               ),
             ],

@@ -5,6 +5,7 @@ import 'package:jig/data/model/question/question_model.dart';
 import 'package:jig/ui/screen/main/home/widget/grip_view_amont_question.dart';
 import 'package:jig/ui/screen/main/test/bluetooth/bluetooth.dart';
 import 'package:jig/ui/screen/main/test/info_device/info_device.dart';
+import 'package:jig/ui/screen/main/test/model_test.dart/model_test.dart';
 import 'package:jig/ui/screen/main/test/write_barcode/write_barcode.dart';
 import 'package:jig/ui/shared/base_screen.dart';
 import 'package:jig/ui/shared/base_test_screen.dart';
@@ -109,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   PageController pageController = PageController();
   int selected = 0;
-  TestStatus status = TestStatus.doing;
+  TestStatus status = TestStatus.stop;
   @override
   Widget build(BuildContext context) {
     return BaseScreenWindow(
@@ -169,14 +170,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 for (int i = 0; i < listQuestion.length; i++)
                   InkWell(
                     onTap: () {
-                      setState(() {
-                        selected = i;
-                        pageController.animateToPage(
-                          i,
-                          duration: const Duration(milliseconds: 400),
-                          curve: Curves.easeInOut,
-                        );
-                      });
+                      if (status == TestStatus.doing) {
+                        setState(() {
+                          selected = i;
+                          pageController.animateToPage(
+                            i,
+                            duration: const Duration(milliseconds: 400),
+                            curve: Curves.easeInOut,
+                          );
+                        });
+                      }
                     },
                     child: Container(
                       alignment: Alignment.center,
@@ -185,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.white,
                         border: Border.all(
                             color: i < selected
-                                ? const Color(0xff0DC301)
+                                ? primaryColor3
                                 : (i == selected
                                     ? const Color(0xff0079D7)
                                     : const Color(0xffCCCBCB))),
@@ -195,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         listQuestion[i].title,
                         style: TextStyle(
                           color: i < selected
-                              ? const Color(0xff0DC301)
+                              ? primaryColor3
                               : (i == selected
                                   ? const Color(0xff0079D7)
                                   : const Color(0xffCCCBCB)),
@@ -207,16 +210,24 @@ class _HomeScreenState extends State<HomeScreen> {
               ]),
         ),
       ),
-      Expanded(
-          child: PageView.builder(
-              itemCount: listQuestion.length,
-              controller: pageController,
-              itemBuilder: (context, index) {
-                return listQuestion[index].child;
-                // return BaseTestScreen(
-                //     resultStatus: listQuestion[index].resultStatus!,
-                //     child: listQuestion[index].child);
-              }))
+      status == TestStatus.stop
+          ? Expanded(child: ModelTestScreen(
+              onPress: () {
+                setState(() {
+                  status = TestStatus.doing;
+                });
+              },
+            ))
+          : Expanded(
+              child: PageView.builder(
+                  itemCount: listQuestion.length,
+                  controller: pageController,
+                  itemBuilder: (context, index) {
+                    return listQuestion[index].child;
+                    // return BaseTestScreen(
+                    //     resultStatus: listQuestion[index].resultStatus!,
+                    //     child: listQuestion[index].child);
+                  }))
     ]);
   }
 }

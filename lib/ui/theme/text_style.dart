@@ -13,7 +13,7 @@ TextStyle get primaryHeaderTitleStyle {
 
 TextStyle get primaryTitleStyle {
   return TextStyle(
-      fontSize: 28.sp,
+      fontSize: 22.sp,
       color: Colors.black,
       fontWeight: FontWeight.w500,
       height: 1.3);
