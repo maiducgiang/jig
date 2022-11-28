@@ -31,22 +31,54 @@ class _MainScreenState extends State<MainScreen> {
     return Column(
       children: [
         header(context),
-        const Divider(
-          thickness: 2,
-          color: Colors.white,
-        ),
-        InkWell(
-          onTap: (() {
-            context.router.push(const HomePage());
-          }),
+        // const Divider(
+        //   thickness: 2,
+        //   color: Colors.white,
+        // ),
+        Expanded(
           child: Container(
             width: double.infinity,
-            height: 200.h,
+            height: double.infinity,
+            padding: EdgeInsets.symmetric(
+                vertical: defaultPaddingScreen,
+                horizontal: defaultPaddingScreen),
             color: Colors.white,
+            child: selectTest(context),
           ),
         )
       ],
     );
+  }
+
+  Widget selectTest(BuildContext context) {
+    return GridView.count(
+        crossAxisCount: 2,
+        crossAxisSpacing: 24.h,
+        mainAxisSpacing: 24.h,
+        childAspectRatio: 2,
+        children: [
+          for (int i = 0; i < 4; i++)
+            InkWell(
+              onTap: (() {
+                context.router.push(const HomePage());
+              }),
+              child: Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(defaultBorderRadius),
+                    color: Colors.grey[350]),
+                child: FittedBox(
+                    child: Text(
+                  "TEST $i: ",
+                  style: TextStyle(
+                    color: contentColor,
+                    fontSize: 24.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                )),
+              ),
+            ),
+        ]);
   }
 
   Widget header(BuildContext context) {
@@ -72,9 +104,14 @@ class _MainScreenState extends State<MainScreen> {
                 SizedBox(
                   width: defaultPaddingScreen / 2,
                 ),
-                Text(
-                  "Cài đặt",
-                  style: primaryHeaderTitleStyle.copyWith(fontSize: 36.sp),
+                InkWell(
+                  onTap: (() {
+                    context.router.push(const SettingPage());
+                  }),
+                  child: Text(
+                    "Cài đặt",
+                    style: primaryHeaderTitleStyle.copyWith(fontSize: 36.sp),
+                  ),
                 )
               ],
             ),

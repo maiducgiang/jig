@@ -7,6 +7,7 @@ TextStyle get primaryHeaderTitleStyle {
       fontSize: 48.sp,
       color: primaryColor,
       fontWeight: FontWeight.bold,
+      overflow: TextOverflow.ellipsis,
       height: 1.3);
 }
 

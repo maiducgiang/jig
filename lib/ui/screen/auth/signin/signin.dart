@@ -24,8 +24,7 @@ class _SignInScreenState extends State<SignInScreen> {
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(color: backgroundColor),
-        child: Align(
-          alignment: Alignment.center,
+        child: Center(
           child: Container(
             width: 553.w,
             height: 693.h,

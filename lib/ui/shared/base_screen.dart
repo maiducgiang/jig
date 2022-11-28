@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jig/ui/router/router.gr.dart';
 import 'package:jig/ui/theme/constant.dart';
 import 'package:jig/ui/theme/text_style.dart';
 
@@ -48,49 +50,54 @@ class _BaseScreenWindowState extends State<BaseScreenWindow> {
         horizontal: defaultPaddingScreen,
       ),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Text(
-          "JIG TEST",
-          style: primaryHeaderTitleStyle.copyWith(),
+        InkWell(
+          onTap: () {
+            context.router.pop();
+          },
+          child: Text(
+            "JIG TEST",
+            style: primaryHeaderTitleStyle.copyWith(),
+          ),
         ),
-        Row(
-          children: [
-            Row(
-              children: [
-                Icon(
-                  Icons.settings,
-                  size: 42.sp,
-                  color: primaryColor,
-                ),
-                SizedBox(
-                  width: defaultPaddingScreen / 2,
-                ),
-                Text(
-                  "Cài đặt",
-                  style: primaryHeaderTitleStyle.copyWith(fontSize: 36.sp),
-                )
-              ],
-            ),
-            SizedBox(
-              width: defaultPaddingScreen * 2,
-            ),
-            Row(
-              children: [
-                Icon(
-                  Icons.output_outlined,
-                  size: 42.sp,
-                  color: primaryColor,
-                ),
-                SizedBox(
-                  width: defaultPaddingScreen / 2,
-                ),
-                Text(
-                  "Đăng xuất",
-                  style: primaryHeaderTitleStyle.copyWith(fontSize: 36.sp),
-                )
-              ],
-            )
-          ],
-        )
+        // Row(
+        //   children: [
+        //     Row(
+        //       children: [
+        //         Icon(
+        //           Icons.settings,
+        //           size: 42.sp,
+        //           color: primaryColor,
+        //         ),
+        //         SizedBox(
+        //           width: defaultPaddingScreen / 2,
+        //         ),
+        //         Text(
+        //           "Cài đặt",
+        //           style: primaryHeaderTitleStyle.copyWith(fontSize: 36.sp),
+        //         )
+        //       ],
+        //     ),
+        //     SizedBox(
+        //       width: defaultPaddingScreen * 2,
+        //     ),
+        //     Row(
+        //       children: [
+        //         Icon(
+        //           Icons.output_outlined,
+        //           size: 42.sp,
+        //           color: primaryColor,
+        //         ),
+        //         SizedBox(
+        //           width: defaultPaddingScreen / 2,
+        //         ),
+        //         Text(
+        //           "Đăng xuất",
+        //           style: primaryHeaderTitleStyle.copyWith(fontSize: 36.sp),
+        //         )
+        //       ],
+        //     )
+        //   ],
+        // )
       ]),
     );
   }

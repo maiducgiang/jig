@@ -6,6 +6,7 @@ import 'package:jig/injection.dart';
 import 'package:jig/ui/base_screen.dart';
 import 'package:jig/ui/loading_screen.dart';
 import 'package:jig/ui/screen/main/setting/widget/dropdown.dart';
+import 'package:jig/ui/shared/base_screen.dart';
 import 'package:jig/ui/shared/widget/button/primary_button.dart';
 import 'package:jig/ui/shared/widget/button/toast.dart';
 import 'package:jig/ui/shared/widget/text_field/text_form_field.dart';
@@ -54,12 +55,15 @@ class _SettingScreenState extends State<SettingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseScreen(
-        child: Container(
-      width: double.infinity,
-      height: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: body(context),
+    return BaseScreenWindow(
+        child: Expanded(
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(color: Colors.white),
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: body(context),
+      ),
     ));
   }
 
@@ -90,6 +94,9 @@ class _SettingScreenState extends State<SettingScreen> {
           return SingleChildScrollView(
             child: Column(
               children: [
+                SizedBox(
+                  height: defaultPaddingScreen,
+                ),
                 Row(
                   children: [
                     Row(
@@ -375,6 +382,9 @@ class _SettingScreenState extends State<SettingScreen> {
                       }),
                     ),
                   ],
+                ),
+                const SizedBox(
+                  height: 24,
                 ),
               ],
             ),
