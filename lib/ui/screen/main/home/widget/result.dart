@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jig/data/model/result/result_model.dart';
@@ -9,7 +7,7 @@ import 'package:jig/ui/theme/text_style.dart';
 
 class ResultScreen extends StatelessWidget {
   const ResultScreen(
-      {super.key, required this.results, this.resultFinal = false});
+      {super.key, required this.results, this.resultFinal = true});
   final List<ResultModel> results;
   final bool resultFinal;
 
@@ -67,10 +65,27 @@ class ResultScreen extends StatelessWidget {
       decoration: BoxDecoration(
           color: resultFinal == true ? primaryColor3 : errorColor),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             resultFinal == true ? "PASS" : "FAIL",
-            style: primaryHeaderTitleStyle.copyWith(color: Colors.white),
+            style: primaryHeaderTitleStyle.copyWith(
+                fontSize: 48.sp, color: Colors.white),
+          ),
+          SizedBox(
+            height: defaultPaddingScreen,
+          ),
+          Container(
+            height: 67.h,
+            width: 186.w,
+            alignment: Alignment.center,
+            decoration: const BoxDecoration(color: Colors.white),
+            child: Text(
+              "Lưu kết quả",
+              style: primaryTitleStyle.copyWith(
+                color: resultFinal == true ? primaryColor3 : errorColor,
+              ),
+            ),
           )
         ],
       ),

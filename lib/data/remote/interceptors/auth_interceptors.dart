@@ -16,6 +16,8 @@ class AuthInterceptor extends Interceptor {
     final userToken = await AccountServices().getUserToken();
     options.headers['X-Requested-With'] = 'XMLHttpRequest';
     options.headers['Authorization'] = 'Bearer $userToken';
+    //options.headers['Content-Type'] = 'application/json';
+
     super.onRequest(options, handler);
   }
 }

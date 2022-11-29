@@ -65,6 +65,9 @@ class _StatusButtonScreenState extends State<StatusButtonScreen> {
             )
           ],
         ),
+        SizedBox(
+          height: defaultPaddingScreen * 2,
+        ),
         Text(
           "Bấm lần 2 LED ở tất cả các nút bấm có sáng không?",
           style: primaryTitleStyle.copyWith(color: Colors.black),

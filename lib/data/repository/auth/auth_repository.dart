@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:jig/data/model/account/account_model.dart';
 import 'package:jig/data/model/no_data/no_data_response.dart';
 
 import 'package:retrofit/http.dart';
@@ -13,9 +14,9 @@ abstract class AuthRepository {
     String baseUrl,
   }) = _AuthRepository;
 
-  // @POST(endpoint.loginEmail)
-  // Future<ResponseLoginModel> login(@Body() RequestLoginModel request);
-  //
+  @POST(endpoint.loginEmail)
+  Future<AccountResponse> login(@Body() AccountRequest request);
+
   // @POST(endpoint.register)
   // Future<ResponseLoginModel> register(@Body() RequestLoginModel request);
 }

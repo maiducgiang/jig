@@ -1,5 +1,5 @@
 library endpoint;
 
 const getUser = "/accounts/me";
-const loginEmail = "/auth/login";
+const loginEmail = "/cms/user/login";
 const register = "/auth/register";

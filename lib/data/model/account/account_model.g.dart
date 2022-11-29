@@ -7,15 +7,45 @@ part of 'account_model.dart';
 // **************************************************************************
 
 Account _$AccountFromJson(Map<String, dynamic> json) => Account(
-      id: json['_id'] as String,
-      phone: json['phone'] as String?,
+      email: json['email'] as String?,
       type: json['type'] as String?,
       password: json['password'] as String?,
+      token: json['token'] as String?,
+      userId: json['userId'] as int?,
     );
 
 Map<String, dynamic> _$AccountToJson(Account instance) => <String, dynamic>{
-      '_id': instance.id,
-      'phone': instance.phone,
+      'email': instance.email,
       'password': instance.password,
       'type': instance.type,
+      'token': instance.token,
+      'userId': instance.userId,
+    };
+
+AccountRequest _$AccountRequestFromJson(Map<String, dynamic> json) =>
+    AccountRequest(
+      email: json['email'] as String?,
+      password: json['password'] as String?,
+    );
+
+Map<String, dynamic> _$AccountRequestToJson(AccountRequest instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+      'password': instance.password,
+    };
+
+AccountResponse _$AccountResponseFromJson(Map<String, dynamic> json) =>
+    AccountResponse(
+      code: json['code'] as int?,
+      data: json['data'] == null
+          ? null
+          : Account.fromJson(json['data'] as Map<String, dynamic>),
+      message: json['message'] as String?,
+    );
+
+Map<String, dynamic> _$AccountResponseToJson(AccountResponse instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'data': instance.data,
     };
