@@ -2,7 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jig/injection.dart';
+import 'package:jig/ui/app_cubit.dart';
 import 'package:jig/ui/router/router.gr.dart';
+import 'package:jig/ui/services/account_services.dart';
+import 'package:jig/ui/shared/custome_cupertino_alert.dart';
+import 'package:jig/ui/shared/widget/button/toast.dart';
 import 'package:jig/ui/theme/constant.dart';
 import 'package:jig/ui/theme/text_style.dart';
 
@@ -15,6 +20,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   @override
+  final appCubit = getIt.get<AppCubit>();
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -116,7 +122,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 InkWell(
                   onTap: (() {
-                    context.router.push(const SettingPage());
+                    context.router.push(const SettingPrimaryPage());
                   }),
                   child: Text(
                     "Cài đặt",
@@ -128,21 +134,51 @@ class _MainScreenState extends State<MainScreen> {
             SizedBox(
               width: defaultPaddingScreen * 2,
             ),
-            Row(
-              children: [
-                Icon(
-                  Icons.output_outlined,
-                  size: 42.sp,
-                  color: primaryColor,
-                ),
-                SizedBox(
-                  width: defaultPaddingScreen / 2,
-                ),
-                Text(
-                  "Đăng xuất",
-                  style: primaryHeaderTitleStyle.copyWith(),
-                )
-              ],
+            InkWell(
+              onTap: (() {
+                showDialog<void>(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (BuildContext dialogContext) {
+                    return CustomCupertinoAlert(
+                      context: context,
+                      title: "Đăng xuất",
+                      content: 'Xác nhận đăng xuất',
+                      rightButtonTitle: 'Xác nhận',
+                      rightAction: () async {
+                        Navigator.pop(context);
+                        AccountServices().saveUserToken('');
+                        AccountServices().saveUserId('');
+                        appCubit.updateUserSession(null);
+                        getIt.get<IToast>().show(
+                            title: 'Thông báo',
+                            message: 'Đăng xuất thành công.',
+                            hasDismissButton: false,
+                            duration: const Duration(milliseconds: 1000));
+
+                        context.router.replace(const SignInPage());
+                      },
+                    );
+                  },
+                );
+                setState(() {});
+              }),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.output_outlined,
+                    size: 42.sp,
+                    color: primaryColor,
+                  ),
+                  SizedBox(
+                    width: defaultPaddingScreen / 2,
+                  ),
+                  Text(
+                    "Đăng xuất",
+                    style: primaryHeaderTitleStyle.copyWith(),
+                  )
+                ],
+              ),
             )
           ],
         )

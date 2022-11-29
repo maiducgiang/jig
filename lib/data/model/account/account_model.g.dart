@@ -37,9 +37,7 @@ Map<String, dynamic> _$AccountRequestToJson(AccountRequest instance) =>
 AccountResponse _$AccountResponseFromJson(Map<String, dynamic> json) =>
     AccountResponse(
       code: json['code'] as int?,
-      data: json['data'] == null
-          ? null
-          : Account.fromJson(json['data'] as Map<String, dynamic>),
+      data: json['data'],
       message: json['message'] as String?,
     );
 

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jig/data/model/result/result_model.dart';
@@ -75,15 +76,20 @@ class ResultScreen extends StatelessWidget {
           SizedBox(
             height: defaultPaddingScreen,
           ),
-          Container(
-            height: 67.h,
-            width: 186.w,
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(color: Colors.white),
-            child: Text(
-              "Lưu kết quả",
-              style: primaryTitleStyle.copyWith(
-                color: resultFinal == true ? primaryColor3 : errorColor,
+          InkWell(
+            onTap: (() {
+              context.router.pop();
+            }),
+            child: Container(
+              height: 67.h,
+              width: 186.w,
+              alignment: Alignment.center,
+              decoration: const BoxDecoration(color: Colors.white),
+              child: Text(
+                "Lưu kết quả",
+                style: primaryTitleStyle.copyWith(
+                  color: resultFinal == true ? primaryColor3 : errorColor,
+                ),
               ),
             ),
           )

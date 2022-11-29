@@ -208,18 +208,18 @@ class _HomeScreenState extends State<HomeScreen> {
       alignment: Alignment.center,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.sp),
-          color: status == TestStatus.doing ? Colors.red : Colors.grey),
+          color: status == TestStatus.doing ? Colors.red : primaryColor3),
       child: FittedBox(
           child: Row(
-        children: const [
+        children: [
           Icon(
-            Icons.pause,
+            status == TestStatus.doing ? Icons.pause : Icons.arrow_right,
             color: Colors.white,
           ),
-          SizedBox(
+          const SizedBox(
             width: 4,
           ),
-          Text(
+          const Text(
             "Dừng",
             style: TextStyle(
               color: Colors.white,

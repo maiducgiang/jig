@@ -36,9 +36,12 @@ class _SplashScreenState extends State<SplashScreen> {
   void checkFirtLoad() async {
     final String token = await AccountServices().getUserToken();
     final String userId = await AccountServices().getUserId();
-    // if (token != '' && userId != '') {
-    //   await handleGetAccountMe();
-    context.router.replace(const SignInPage());
+    if (token != '' && userId != '') {
+      context.router.push(const MainPage());
+    } else {
+      //await handleGetAccountMe();
+      context.router.replace(const SignInPage());
+    }
     // } else {
     //   context.router.push(const WelcomePage());
     // }

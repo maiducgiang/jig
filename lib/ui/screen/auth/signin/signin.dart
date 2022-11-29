@@ -98,6 +98,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     TextFormFieldInput(
                         error: error,
+                        maxLine: 1,
                         controller: emailController,
                         hinText: "email"),
                     SizedBox(
@@ -112,6 +113,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     TextFormFieldInput(
                         error: error,
+                        maxLine: 1,
                         controller: passController,
                         hinText: "password"),
                     SizedBox(
@@ -120,7 +122,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     state.isLoading == true
                         ? Container(
                             alignment: Alignment.center,
-                            height: 75.w,
+                            height: 72.h,
                             child: const CircularProgressIndicator(),
                           )
                         : PrimaryButton(
@@ -136,6 +138,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                 if (check == true) {
                                   context.router.push(const MainPage());
                                 } else {
+                                  setState(() {
+                                    error = state.error;
+                                  });
                                   setState(() {
                                     error = state.error;
                                   });

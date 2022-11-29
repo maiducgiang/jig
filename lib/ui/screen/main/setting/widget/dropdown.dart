@@ -23,7 +23,7 @@ class _DropdowComState extends State<DropdowCom> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
+      //width: 200,
       height: 45,
       padding: EdgeInsets.symmetric(horizontal: defaultPaddingScreen),
       decoration: BoxDecoration(

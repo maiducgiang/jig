@@ -36,9 +36,10 @@ class SigninCubit extends Cubit<SigninState> {
         emit(state.copyWith(isLoading: true, error: response.message));
         return false;
       }
-    } catch (e) {
-      emit(state.copyWith(isLoading: false, error: e.toString()));
-      return false;
+    } on DioError catch (e) {
+      final errorMessage = _apiAuth.mapDioErrorToMessage(e);
+      emit(state.copyWith(isLoading: false, error: errorMessage));
+      return null;
     }
   }
 }

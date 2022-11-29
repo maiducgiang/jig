@@ -6,6 +6,7 @@ import 'package:jig/ui/screen/auth/splash/splash_screen.dart';
 import 'package:jig/ui/screen/main/home/home_screen.dart';
 import 'package:jig/ui/screen/main/main_screen.dart';
 import 'package:jig/ui/screen/main/setting/setting.dart';
+import 'package:jig/ui/screen/main/setting/setting_screen.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -23,6 +24,10 @@ import 'package:jig/ui/screen/main/setting/setting.dart';
         name: "SplashPage",
         path: AppRoutes.splashScreen,
         initial: true),
+    AutoRoute(
+        page: SettingPrimaryScreen,
+        name: "SettingPrimaryPage",
+        path: "/SettingPrimaryPage")
   ],
 )
 class $AppRouter {}
