@@ -34,7 +34,7 @@ class AccountRequest {
 class AccountResponse {
   final int? code;
   final String? message;
-  final dynamic data;
+  final Account? data;
   AccountResponse({this.code, this.data, this.message});
   factory AccountResponse.fromJson(Map<String, dynamic> json) =>
       _$AccountResponseFromJson(json);

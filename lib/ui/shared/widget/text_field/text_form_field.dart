@@ -19,7 +19,7 @@ class TextFormFieldInput extends StatefulWidget {
       this.onChanged,
       this.enable,
       this.isBarcode,
-      this.maxLine,
+      this.maxLine = 1,
       this.onTap})
       : super();
   final TextEditingController controller;
