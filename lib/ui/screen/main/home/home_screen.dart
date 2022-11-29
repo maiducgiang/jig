@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jig/data/enum/enum_test_status.dart';
 import 'package:jig/data/model/question/question_model.dart';
+import 'package:jig/data/model/result/result_model.dart';
 import 'package:jig/ui/screen/main/home/widget/result.dart';
 import 'package:jig/ui/screen/main/test/bluetooth/bluetooth.dart';
 import 'package:jig/ui/screen/main/test/bluetooth_mac/bluetooth_mac.dart';
@@ -24,6 +25,50 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+
+List<ResultModel> results = [
+  ResultModel(result: "Model 1234abc", title: "Model:", status: true),
+  ResultModel(
+      result: "Firmwave version 123456",
+      title: "Firmware version:",
+      status: true),
+  ResultModel(result: "Serial Code:", title: "Firmware version:", status: true),
+  ResultModel(
+      result: "PASS",
+      title: "Kết nối bluetooth, Wifi:",
+      status: true,
+      colorResult: primaryColor3),
+  ResultModel(
+      result: "PASS",
+      title: "Thu phát hồng ngoại:",
+      status: true,
+      colorResult: primaryColor3),
+  ResultModel(
+      result: "PASS",
+      title: "Calib công suât:",
+      status: true,
+      colorResult: primaryColor3),
+  ResultModel(
+      result: "PASS",
+      title: "Calib công suất sau hiệu chỉnh:",
+      status: true,
+      colorResult: primaryColor3),
+  ResultModel(
+      result: "PASS",
+      title: "Trạng thái đèn LED:",
+      status: true,
+      colorResult: primaryColor3),
+  ResultModel(
+      result: "PASS",
+      title: "Trạng thái đèn nút bấm:",
+      status: true,
+      colorResult: primaryColor3),
+  ResultModel(
+      result: "PASS",
+      title: "Bluetooth MAC:",
+      status: true,
+      colorResult: primaryColor3),
+];
 
 class _HomeScreenState extends State<HomeScreen> {
   final List<Question> listQuestion = [
@@ -151,7 +196,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         //     resultStatus: listQuestion[index].resultStatus!,
                         //     child: listQuestion[index].child);
                       }))
-              : const Expanded(child: ResultScreen()))
+              : Expanded(
+                  child: ResultScreen(
+                  results: results,
+                )))
     ]);
   }
 
