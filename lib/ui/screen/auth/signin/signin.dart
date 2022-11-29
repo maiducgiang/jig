@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jig/data/model/account/account_model.dart';
 import 'package:jig/injection.dart';
+import 'package:jig/ui/app_cubit.dart';
 import 'package:jig/ui/loading_screen.dart';
 import 'package:jig/ui/router/router.gr.dart';
 import 'package:jig/ui/screen/auth/signin/cubit/signin_cubit.dart';
@@ -53,7 +54,8 @@ class _SignInScreenState extends State<SignInScreen> {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: defaultPaddingScreen * 6),
       child: BlocProvider(
-        create: (context) => SigninCubit(getIt.get<AuthRepository>()),
+        create: (context) =>
+            SigninCubit(getIt.get<AuthRepository>(), getIt.get<AppCubit>()),
         child: BlocConsumer<SigninCubit, SigninState>(
           listener: (context, state) {
             // TODO: implement listener
@@ -115,26 +117,32 @@ class _SignInScreenState extends State<SignInScreen> {
                     SizedBox(
                       height: defaultPaddingScreen * 2,
                     ),
-                    PrimaryButton(
-                      label: "Đăng nhập",
-                      backgroundColor: primaryColor,
-                      onPressed: (() async {
-                        if (_formKey.currentState!.validate() == true) {
-                          bool? check = await context
-                              .read<SigninCubit>()
-                              .getLoginEmail(
-                                  email: emailController.text,
-                                  pass: passController.text);
-                          if (check == true) {
-                            context.router.push(const MainPage());
-                          } else {
-                            setState(() {
-                              error = state.error;
-                            });
-                          }
-                        }
-                      }),
-                    ),
+                    state.isLoading == true
+                        ? Container(
+                            alignment: Alignment.center,
+                            height: 75.w,
+                            child: const CircularProgressIndicator(),
+                          )
+                        : PrimaryButton(
+                            label: "Đăng nhập",
+                            backgroundColor: primaryColor,
+                            onPressed: (() async {
+                              if (_formKey.currentState!.validate() == true) {
+                                bool? check = await context
+                                    .read<SigninCubit>()
+                                    .getLoginEmail(
+                                        email: emailController.text,
+                                        pass: passController.text);
+                                if (check == true) {
+                                  context.router.push(const MainPage());
+                                } else {
+                                  setState(() {
+                                    error = state.error;
+                                  });
+                                }
+                              }
+                            }),
+                          ),
                     SizedBox(
                       height: defaultPaddingScreen * 2,
                     ),
