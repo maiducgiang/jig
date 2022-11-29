@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jig/foundation/extension/validation.dart';
 import '../../../theme/constant.dart';
 
@@ -89,8 +90,9 @@ class _TextFormFieldInputState extends State<TextFormFieldInput> {
                   });
                 }),
                 child: Icon(
-                  check ? Icons.visibility : Icons.visibility_off,
-                  color: Colors.grey,
+                  Icons.qr_code_scanner_outlined, //: Icons.visibility_off,
+                  size: 36.sp,
+                  color: primaryColor,
                 ),
               )
             : null,

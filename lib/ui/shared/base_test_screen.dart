@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jig/data/enum/enum_test_status.dart';
+import 'package:jig/ui/theme/constant.dart';
 import 'package:jig/ui/theme/text_style.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
 class BaseTestScreen extends StatelessWidget {
   const BaseTestScreen(
-      {super.key, this.resultStatus = ResultStatus.doing, required this.child});
+      {super.key,
+      this.resultStatus = ResultStatus.doing,
+      required this.child,
+      required this.title});
   final ResultStatus resultStatus;
+  final String title;
   final Widget child;
   @override
   Widget build(BuildContext context) {
@@ -16,9 +21,21 @@ class BaseTestScreen extends StatelessWidget {
       height: double.infinity,
       child: Column(children: [
         Expanded(
-            child: Container(
-                //color: Colors.grey[200],
-                child: child)),
+            child: Column(
+          children: [
+            SizedBox(
+              height: defaultPaddingScreen * 2,
+            ),
+            Text(
+              title,
+              style: primaryHeaderTitleStyle.copyWith(color: Colors.black),
+            ),
+            SizedBox(
+              height: defaultPaddingScreen * 2,
+            ),
+            child,
+          ],
+        )),
         Container(
           width: double.infinity,
           height: 120.h,

@@ -17,22 +17,21 @@ class _BluetoothScreenState extends State<BluetoothScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseTestScreen(
+      title: "KẾT NỐI BLUETOOTH, WIFI",
       resultStatus: ResultStatus.pass,
       child: Column(
         children: [
-          SizedBox(
-            height: defaultPaddingScreen * 2,
-          ),
-          Text(
-            "KẾT NỐI BLUETOOTH, WIFI",
-            style: primaryHeaderTitleStyle.copyWith(color: Colors.black),
-          ),
-          SizedBox(
-            height: defaultPaddingScreen * 2,
-          ),
-          SizedBox(
-            height: defaultPaddingScreen,
-          ),
+          // SizedBox(
+          //   height: defaultPaddingScreen * 2,
+          // ),
+          // Text(
+          //   "KẾT NỐI BLUETOOTH, WIFI",
+          //   style: primaryHeaderTitleStyle.copyWith(color: Colors.black),
+          // ),
+          // SizedBox(
+          //   height: defaultPaddingScreen * 2,
+          // ),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

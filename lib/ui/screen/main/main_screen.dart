@@ -35,13 +35,22 @@ class _MainScreenState extends State<MainScreen> {
         //   thickness: 2,
         //   color: Colors.white,
         // ),
+        SizedBox(
+          height: defaultPaddingScreen,
+        ),
+        // Container(
+        //   width: double.infinity,
+        //   height: 500.h,
+        //   child: selectTest(context),
+        // ),
+
         Expanded(
           child: Container(
             width: double.infinity,
             height: double.infinity,
             padding: EdgeInsets.symmetric(
-                vertical: defaultPaddingScreen,
-                horizontal: defaultPaddingScreen),
+                horizontal: defaultPaddingScreen,
+                vertical: defaultPaddingScreen),
             color: Colors.white,
             child: selectTest(context),
           ),
@@ -56,6 +65,7 @@ class _MainScreenState extends State<MainScreen> {
         crossAxisSpacing: 24.h,
         mainAxisSpacing: 24.h,
         childAspectRatio: 2,
+        //physics: const NeverScrollableScrollPhysics(),
         children: [
           for (int i = 0; i < 4; i++)
             InkWell(

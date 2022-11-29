@@ -18,19 +18,10 @@ class _WriteBarcodeScreenState extends State<WriteBarcodeScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseTestScreen(
+      title: "GHI MÃ VẠCH",
       resultStatus: ResultStatus.pass,
       child: Column(
         children: [
-          SizedBox(
-            height: defaultPaddingScreen * 2,
-          ),
-          Text(
-            "GHI MÃ MẠCH",
-            style: primaryHeaderTitleStyle.copyWith(color: Colors.black),
-          ),
-          SizedBox(
-            height: defaultPaddingScreen * 2,
-          ),
           SizedBox(
             width: 700.w,
             child: Column(
@@ -44,7 +35,9 @@ class _WriteBarcodeScreenState extends State<WriteBarcodeScreen> {
                   height: defaultPaddingScreen,
                 ),
                 TextFormFieldInput(
-                    controller: TextEditingController(), hinText: ""),
+                    isBarcode: true,
+                    controller: TextEditingController(),
+                    hinText: ""),
                 SizedBox(
                   height: defaultPaddingScreen,
                 ),

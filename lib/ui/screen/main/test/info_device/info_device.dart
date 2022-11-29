@@ -16,18 +16,19 @@ class _InfoDeviceScreenState extends State<InfoDeviceScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseTestScreen(
+      title: "THÔNG TIN THIẾT BỊ",
       child: Column(
         children: [
-          SizedBox(
-            height: defaultPaddingScreen * 2,
-          ),
-          Text(
-            "THÔNG TIN THIẾT BỊ",
-            style: primaryHeaderTitleStyle.copyWith(color: Colors.black),
-          ),
-          SizedBox(
-            height: defaultPaddingScreen * 2,
-          ),
+          // SizedBox(
+          //   height: defaultPaddingScreen * 2,
+          // ),
+          // Text(
+          //   ,
+          //   style: primaryHeaderTitleStyle.copyWith(color: Colors.black),
+          // ),
+          // SizedBox(
+          //   height: defaultPaddingScreen * 2,
+          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
