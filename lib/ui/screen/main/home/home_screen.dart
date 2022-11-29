@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jig/data/enum/enum_test_status.dart';
 import 'package:jig/data/model/question/question_model.dart';
-import 'package:jig/ui/screen/main/home/widget/grip_view_amont_question.dart';
+import 'package:jig/ui/screen/main/home/widget/result.dart';
 import 'package:jig/ui/screen/main/test/bluetooth/bluetooth.dart';
+import 'package:jig/ui/screen/main/test/bluetooth_mac/bluetooth_mac.dart';
+import 'package:jig/ui/screen/main/test/calib_power_last/calib_power_last.dart';
 import 'package:jig/ui/screen/main/test/info_device/info_device.dart';
+import 'package:jig/ui/screen/main/test/ir/ir_write_read.dart';
 import 'package:jig/ui/screen/main/test/model_test.dart/model_test.dart';
+import 'package:jig/ui/screen/main/test/status_button/status_button.dart';
+import 'package:jig/ui/screen/main/test/status_led/status_lead.dart';
+import 'package:jig/ui/screen/main/test/voice/voice.dart';
 import 'package:jig/ui/screen/main/test/write_barcode/write_barcode.dart';
 import 'package:jig/ui/shared/base_screen.dart';
-import 'package:jig/ui/shared/base_test_screen.dart';
 import 'package:jig/ui/theme/constant.dart';
-import 'package:jig/ui/theme/text_style.dart';
+
+import '../test/calib_power/calib_power.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -38,74 +44,32 @@ class _HomeScreenState extends State<HomeScreen> {
         status: SelectTestStatus.selected),
     Question(
         title: "Test 4",
-        child: Container(
-          child: Center(
-              child: Text(
-            "4",
-            style: primaryHeaderTitleStyle,
-          )),
-        ),
+        child: IrWriteReadScreen(),
         resultStatus: ResultStatus.pass,
         status: SelectTestStatus.selected),
     Question(
         title: "Test 5",
-        child: Container(
-          child: Center(
-              child: Text(
-            "5",
-            style: primaryHeaderTitleStyle,
-          )),
-        ),
+        child: CalibPowerScreen(),
         status: SelectTestStatus.select),
     Question(
         title: "Test 6",
-        child: Container(
-          child: Center(
-              child: Text(
-            "6",
-            style: primaryHeaderTitleStyle,
-          )),
-        ),
+        child: CalibPowerLastScreen(),
         status: SelectTestStatus.notSelect),
     Question(
         title: "Test 7",
-        child: Container(
-          child: Center(
-              child: Text(
-            "7",
-            style: primaryHeaderTitleStyle,
-          )),
-        ),
+        child: StatusLedScreen(),
         status: SelectTestStatus.notSelect),
     Question(
         title: "Test 8",
-        child: Container(
-          child: Center(
-              child: Text(
-            "8",
-            style: primaryHeaderTitleStyle,
-          )),
-        ),
+        child: StatusButtonScreen(),
         status: SelectTestStatus.notSelect),
     Question(
         title: "Test 9",
-        child: Container(
-          child: Center(
-              child: Text(
-            "9",
-            style: primaryHeaderTitleStyle,
-          )),
-        ),
+        child: VoiceScreen(),
         status: SelectTestStatus.notSelect),
     Question(
         title: "Test 10",
-        child: Container(
-          child: Center(
-              child: Text(
-            "10",
-            style: primaryHeaderTitleStyle,
-          )),
-        ),
+        child: BluetoothMacScreen(),
         status: SelectTestStatus.notSelect),
   ];
   PageController pageController = PageController();
@@ -119,94 +83,52 @@ class _HomeScreenState extends State<HomeScreen> {
           width: double.infinity,
           height: double.infinity,
           decoration: const BoxDecoration(color: Colors.white),
-          child: body(context, listQuestion, pageController),
+          child: body(
+            context,
+          ),
         ),
       ),
     );
   }
 
-  Widget body(BuildContext context, List<Question> listQuestion,
-      PageController pageController) {
+  Widget body(
+    BuildContext context,
+  ) {
     return Column(children: [
       Container(
-        height: 190.h,
+        height: 120.h,
         padding: EdgeInsets.symmetric(
             horizontal: defaultPaddingScreen, vertical: defaultPaddingScreen),
         decoration: const BoxDecoration(color: backgroundColor),
         child: Center(
           child: GridView.count(
-              crossAxisCount: 11,
+              crossAxisCount: 12,
               crossAxisSpacing: 4.h,
               mainAxisSpacing: 8.h,
               childAspectRatio: 2.5,
               children: [
-                Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.sp),
-                      color: status == TestStatus.doing
-                          ? Colors.red
-                          : Colors.grey),
-                  child: FittedBox(
-                      child: Row(
-                    children: const [
-                      Icon(
-                        Icons.pause,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      Text(
-                        "Dừng",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      )
-                    ],
-                  )),
-                ),
+                itemFirst(context),
                 for (int i = 0; i < listQuestion.length; i++)
                   InkWell(
-                    onTap: () {
-                      if (status == TestStatus.doing) {
-                        setState(() {
-                          selected = i;
-                          pageController.animateToPage(
-                            i,
-                            duration: const Duration(milliseconds: 400),
-                            curve: Curves.easeInOut,
-                          );
-                        });
-                      }
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.sp),
-                        color: Colors.white,
-                        border: Border.all(
-                            color: i < selected
-                                ? primaryColor3
-                                : (i == selected
-                                    ? const Color(0xff0079D7)
-                                    : const Color(0xffCCCBCB))),
-                      ),
-                      child: FittedBox(
-                          child: Text(
-                        listQuestion[i].title,
-                        style: TextStyle(
-                          color: i < selected
-                              ? primaryColor3
-                              : (i == selected
-                                  ? const Color(0xff0079D7)
-                                  : const Color(0xffCCCBCB)),
-                          fontWeight: FontWeight.w600,
-                        ),
+                      onTap: () {
+                        if (status == TestStatus.doing) {
+                          setState(() {
+                            selected = i;
+                            pageController.animateToPage(
+                              i,
+                              duration: const Duration(milliseconds: 400),
+                              curve: Curves.easeInOut,
+                            );
+                          });
+                        }
+                      },
+                      child: itemTest(
+                        context: context,
+                        index: i,
+                        select: selected,
+                        title: listQuestion[i].title,
                       )),
-                    ),
-                  ),
+                itemSubmit(context)
               ]),
         ),
       ),
@@ -218,16 +140,109 @@ class _HomeScreenState extends State<HomeScreen> {
                 });
               },
             ))
-          : Expanded(
-              child: PageView.builder(
-                  itemCount: listQuestion.length,
-                  controller: pageController,
-                  itemBuilder: (context, index) {
-                    return listQuestion[index].child;
-                    // return BaseTestScreen(
-                    //     resultStatus: listQuestion[index].resultStatus!,
-                    //     child: listQuestion[index].child);
-                  }))
+          : (status == TestStatus.doing
+              ? Expanded(
+                  child: PageView.builder(
+                      itemCount: listQuestion.length,
+                      controller: pageController,
+                      itemBuilder: (context, index) {
+                        return listQuestion[index].child;
+                        // return BaseTestScreen(
+                        //     resultStatus: listQuestion[index].resultStatus!,
+                        //     child: listQuestion[index].child);
+                      }))
+              : const Expanded(child: ResultScreen()))
     ]);
+  }
+
+  Widget itemFirst(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.sp),
+          color: status == TestStatus.doing ? Colors.red : Colors.grey),
+      child: FittedBox(
+          child: Row(
+        children: const [
+          Icon(
+            Icons.pause,
+            color: Colors.white,
+          ),
+          SizedBox(
+            width: 4,
+          ),
+          Text(
+            "Dừng",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+            ),
+          )
+        ],
+      )),
+    );
+  }
+
+  Widget itemSubmit(
+    BuildContext context,
+  ) {
+    return InkWell(
+      onTap: (() {
+        setState(() {
+          status = TestStatus.end;
+        });
+      }),
+      child: Container(
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.sp),
+            border: Border.all(color: Colors.red, width: 1),
+            color: Colors.white),
+        child: FittedBox(
+            child: Row(
+          children: const [
+            Text(
+              "Submit",
+              style: TextStyle(
+                color: Colors.red,
+                fontWeight: FontWeight.w600,
+              ),
+            )
+          ],
+        )),
+      ),
+    );
+  }
+
+  Widget itemTest(
+      {required BuildContext context,
+      required String title,
+      required int index,
+      required int select}) {
+    return Container(
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.sp),
+        color: Colors.white,
+        border: Border.all(
+            color: index < selected
+                ? primaryColor3
+                : (index == selected
+                    ? const Color(0xff0079D7)
+                    : const Color(0xffCCCBCB))),
+      ),
+      child: FittedBox(
+          child: Text(
+        title,
+        style: TextStyle(
+          color: index < selected
+              ? primaryColor3
+              : (index == selected
+                  ? const Color(0xff0079D7)
+                  : const Color(0xffCCCBCB)),
+          fontWeight: FontWeight.w600,
+        ),
+      )),
+    );
   }
 }

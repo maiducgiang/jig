@@ -21,7 +21,7 @@ TextStyle get primaryTitleStyle {
 
 TextStyle get primaryContentStyle {
   return TextStyle(
-      fontSize: 14.sp, color: contentColor, fontWeight: FontWeight.w400);
+      fontSize: 14.sp, color: contentColor, fontWeight: FontWeight.w700);
 }
 
 TextStyle get primarySubTitleStyle {

@@ -36,14 +36,14 @@ class _BluetoothScreenState extends State<BluetoothScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                width: 260.h,
+                width: 260.w,
                 child: Text(
                   "Wi-Fi:",
                   style: primaryTitleStyle.copyWith(color: Colors.grey),
                 ),
               ),
               SizedBox(
-                width: 600.h,
+                width: 300.w,
                 child: Text(
                   "Kết nối thành công",
                   style: primaryTitleStyle.copyWith(color: primaryColor3),
@@ -58,14 +58,14 @@ class _BluetoothScreenState extends State<BluetoothScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                width: 260.h,
+                width: 260.w,
                 child: Text(
                   "Bluetooth:",
                   style: primaryTitleStyle.copyWith(color: Colors.grey),
                 ),
               ),
               SizedBox(
-                width: 600.h,
+                width: 300.w,
                 child: Text(
                   "Kết nối thành công",
                   style: primaryTitleStyle.copyWith(color: primaryColor3),
