@@ -20,7 +20,6 @@ class SigninCubit extends Cubit<SigninState> {
         password: pass,
         email: email,
       ));
-      // ignore: unrelated_type_equality_checks
       if (response.code == 200) {
         final userToken = response.data!.token;
         final userId = response.data!.userId;
