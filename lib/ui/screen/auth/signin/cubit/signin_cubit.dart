@@ -25,6 +25,7 @@ class SigninCubit extends Cubit<SigninState> {
         final userId = response.data!.userId;
 
         AccountServices().saveUserToken(userToken!);
+        print("giang$userToken");
         AccountServices().saveUserId(userId.toString());
         final userSession =
             UserSession(token: userToken, userId: userId!, status: 200);
