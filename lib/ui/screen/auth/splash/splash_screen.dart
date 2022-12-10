@@ -14,6 +14,7 @@ import 'package:jig/ui/router/router.gr.dart';
 import 'package:jig/ui/services/account_services.dart';
 import 'package:jig/ui/theme/box_decoration.dart';
 import 'package:jig/ui/theme/constant.dart';
+import 'package:sp_util/sp_util.dart';
 
 class SplashScreen extends StatefulWidget {
   SplashScreen({Key? key}) : super(key: key);
@@ -36,6 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void checkFirtLoad() async {
     final String token = await AccountServices().getUserToken();
     final String userId = await AccountServices().getUserId();
+    SpUtil.putString("userToken", token);
     if (token != '' && userId != '') {
       context.router.push(const MainPage());
     } else {

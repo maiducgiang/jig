@@ -7,6 +7,7 @@ import 'package:jig/data/repository/auth/auth_repository.dart';
 import 'package:jig/ui/app_cubit.dart';
 import 'package:jig/ui/screen/auth/signin/cubit/signin_state.dart';
 import 'package:jig/ui/services/account_services.dart';
+import 'package:sp_util/sp_util.dart';
 
 class SigninCubit extends Cubit<SigninState> {
   SigninCubit(this._apiAuth, this.appCubit) : super(SigninState.initial());
@@ -23,7 +24,8 @@ class SigninCubit extends Cubit<SigninState> {
       if (response.code == 200) {
         final userToken = response.data!.token;
         final userId = response.data!.userId;
-
+        SpUtil.putString("userToken", userToken ?? "");
+        SpUtil.putInt("userId", userId ?? 0);
         AccountServices().saveUserToken(userToken!);
         print("giang$userToken");
         AccountServices().saveUserId(userId.toString());

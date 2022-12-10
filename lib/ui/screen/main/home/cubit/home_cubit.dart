@@ -5,16 +5,18 @@ import 'package:jig/ui/screen/main/home/cubit/home_state.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:jig/ui/services/account_services.dart';
 import 'package:jig/ui/services/graphql_strings.dart' as graphql_endpoint;
+import 'package:sp_util/sp_util.dart';
 
 // import '..services/graphql_strings.dart' as gql_string;
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeState.initial());
   late GraphQLClient qlClient;
 
-  void initCubit() async {
+  void initCubit() {
     Map<String, String> headers = <String, String>{};
     //String token = await AccountServices().getUserToken();
-    //headers['Authorization'] = 'Bearer $token';
+    String? token = SpUtil.getString("userToken", defValue: "");
+    headers['Authorization'] = 'Bearer $token';
     HttpLink link = HttpLink("https://stg-kshop-api.karofi.com/graphql",
         defaultHeaders: headers); // it's my url
     qlClient = GraphQLClient(
