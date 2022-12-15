@@ -15,7 +15,7 @@ extension ResultStatusExt on ResultStatus {
       case ResultStatus.doing:
         return "Đang kiểm tra";
       case ResultStatus.fail:
-        return "FAIL: DỪNG TEST";
+        return "FAIL";
       case ResultStatus.check:
         return "CHECK";
     }

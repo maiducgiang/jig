@@ -3,7 +3,6 @@ import 'package:jig/data/model/product_type_filter/product_type_filter.dart';
 import 'package:jig/data/model/response/get_product_response.dart';
 import 'package:jig/ui/screen/main/home/cubit/home_state.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:jig/ui/services/account_services.dart';
 import 'package:jig/ui/services/graphql_strings.dart' as graphql_endpoint;
 import 'package:sp_util/sp_util.dart';
 

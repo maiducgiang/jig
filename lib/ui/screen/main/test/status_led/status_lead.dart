@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jig/data/enum/enum_test_status.dart';
 import 'package:jig/ui/shared/base_test_screen.dart';
 import 'package:jig/ui/theme/constant.dart';
 import 'package:jig/ui/theme/text_style.dart';
 
 class StatusLedScreen extends StatefulWidget {
-  const StatusLedScreen({super.key});
-
+  const StatusLedScreen({super.key, this.onPress});
+  final Function(ResultStatus)? onPress;
   @override
   State<StatusLedScreen> createState() => _StatusLedScreenState();
 }

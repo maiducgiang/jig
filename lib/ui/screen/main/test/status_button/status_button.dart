@@ -6,8 +6,8 @@ import 'package:jig/ui/theme/constant.dart';
 import 'package:jig/ui/theme/text_style.dart';
 
 class StatusButtonScreen extends StatefulWidget {
-  const StatusButtonScreen({super.key});
-
+  const StatusButtonScreen({super.key, this.onPress});
+  final Function(ResultStatus)? onPress;
   @override
   State<StatusButtonScreen> createState() => _StatusButtonScreenState();
 }
@@ -15,10 +15,7 @@ class StatusButtonScreen extends StatefulWidget {
 class _StatusButtonScreenState extends State<StatusButtonScreen> {
   @override
   Widget build(BuildContext context) {
-    return BaseTestScreen(
-        resultStatus: ResultStatus.pass,
-        title: "TRẠNG THÁI NÚT BẤM",
-        child: body(context));
+    return BaseTestScreen(title: "TRẠNG THÁI NÚT BẤM", child: body(context));
   }
 
   Widget body(BuildContext context) {

@@ -5,8 +5,10 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jig/data/repository/auth/auth_repository.dart';
 import 'package:jig/data/repository/main/main_repository.dart';
+import 'package:jig/data/setup_data_port/setup_data_port.dart';
 import 'package:jig/ui/screen/main/setting/cubit/setting_state.dart';
 import 'package:serial_port_win32/serial_port_win32.dart';
+import 'package:sp_util/sp_util.dart';
 
 class SettingCubit extends Cubit<SettingState> {
   final AuthRepository _apiAuth;
@@ -20,6 +22,28 @@ class SettingCubit extends Cubit<SettingState> {
     List<String> ports = [];
     ports = SerialPort.getAvailablePorts();
     emit(state.copyWith(isLoading: false, comPorts: ports));
+  }
+
+  void saveInforOpenPort({
+    required String namePort,
+    required int baudRate,
+    required int parity,
+    required int stopBits,
+    required int byteSize,
+    required int readIntervalTimeout,
+    required int readTotalTimeoutConstant,
+    required int readTotalTimeoutMulti,
+  }) async {
+    SetupDataPortModel info = SetupDataPortModel(
+        namePort: namePort,
+        baudRate: baudRate,
+        byteSize: byteSize,
+        parity: parity,
+        readIntervalTimeout: readIntervalTimeout,
+        readTotalTimeoutConstant: readTotalTimeoutConstant,
+        readTotalTimeoutMulti: readTotalTimeoutMulti,
+        stopBits: stopBits);
+    SpUtil.putObject("SetupDataPortModel", info);
   }
 
   Future<void> openPort({
@@ -63,7 +87,7 @@ class SettingCubit extends Cubit<SettingState> {
     if (port.isOpened == false) port.open();
     print(utf8.encode(message));
     //bug: send + utf8 = [0] last message
-    //bool check = port2.writeBytesFromString(message);
+    // bool check = port.writeBytesFromString(message);
     bool check =
         port.writeBytesFromUint8List(Uint8List.fromList(utf8.encode(message)));
     print("send message: ${message} " + (check == false ? "fail" : "success"));
@@ -84,7 +108,6 @@ class SettingCubit extends Cubit<SettingState> {
         s += String.fromCharCodes(value);
         //String str = "#@F&L^&%U##T#T@#ER###CA@#@M*(PU@&#S%^%2324@*(^&";
         s = s.replaceAll(RegExp('[^ -~\n]'), '');
-
         emit(state.copyWith(dataReceive: s));
       });
     }

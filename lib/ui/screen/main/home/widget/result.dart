@@ -111,7 +111,9 @@ class ResultScreen extends StatelessWidget {
             padding: EdgeInsets.only(left: defaultPaddingScreen),
             child: Text(
               resultModel.title,
-              style: primaryTitleStyle.copyWith(),
+              style: primaryTitleStyle.copyWith(
+                  //color: resultModel.title.contains("PASS")?
+                  ),
             ),
           ),
         ),
@@ -119,7 +121,10 @@ class ResultScreen extends StatelessWidget {
           width: 400.w,
           child: Text(
             resultModel.result,
-            style: primaryTitleStyle.copyWith(color: resultModel.colorResult),
+            style: primaryTitleStyle.copyWith(
+                color: resultModel.result.contains("PASS")
+                    ? primaryColor3
+                    : errorColor),
           ),
         )
       ]),

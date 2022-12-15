@@ -30,94 +30,146 @@ class HomeScreen extends StatefulWidget {
 }
 
 List<ResultModel> results = [
-  ResultModel(result: "Model 1234abc", title: "Model:", status: true),
+  ResultModel(result: "Model ", title: "Model:", status: true),
   ResultModel(
-      result: "Firmwave version 123456",
-      title: "Firmware version:",
-      status: true),
+      result: "Firmwave version ", title: "Firmware version:", status: true),
   ResultModel(result: "Serial Code:", title: "Firmware version:", status: true),
   ResultModel(
-      result: "PASS",
+      result: "FAIL",
       title: "Kết nối bluetooth, Wifi:",
       status: true,
       colorResult: primaryColor3),
   ResultModel(
-      result: "PASS",
+      result: "FAIL",
       title: "Thu phát hồng ngoại:",
       status: true,
       colorResult: primaryColor3),
   ResultModel(
-      result: "PASS",
+      result: "FAIL",
       title: "Calib công suât:",
       status: true,
       colorResult: primaryColor3),
   ResultModel(
-      result: "PASS",
+      result: "FAIL",
       title: "Calib công suất sau hiệu chỉnh:",
       status: true,
       colorResult: primaryColor3),
   ResultModel(
-      result: "PASS",
+      result: "FAIL",
       title: "Trạng thái đèn LED:",
       status: true,
       colorResult: primaryColor3),
   ResultModel(
-      result: "PASS",
+      result: "FAIL",
       title: "Trạng thái đèn nút bấm:",
       status: true,
       colorResult: primaryColor3),
   ResultModel(
-      result: "PASS",
+      result: "FAIL",
       title: "Bluetooth MAC:",
       status: true,
       colorResult: primaryColor3),
 ];
 
 class _HomeScreenState extends State<HomeScreen> {
+  late String check = "";
   final List<Question> listQuestion = [
     Question(
-        title: "Test 1",
-        child: InfoDeviceScreen(),
-        resultStatus: ResultStatus.fail,
-        status: SelectTestStatus.selected),
+      title: "Test 1",
+      child: InfoDeviceScreen(
+        onPress: (value) {
+          results[0] = results[0].copyWith(
+              result: "Model +${value.display()}", colorResult: value.color());
+        },
+      ),
+      resultStatus: ResultStatus.fail,
+      status: SelectTestStatus.selected,
+    ),
     Question(
         title: "Test 2",
-        child: WriteBarcodeScreen(),
+        child: WriteBarcodeScreen(
+          onPress: (value) {
+            results[1] = results[1].copyWith(
+                result: "Firmwave version +${value.display()}",
+                colorResult: value.color());
+          },
+        ),
         resultStatus: ResultStatus.pass,
         status: SelectTestStatus.selected),
     Question(
         title: "Test 3",
-        child: BluetoothScreen(),
+        child: BluetoothScreen(
+          onPress: (value) {
+            results[2] = results[2].copyWith(
+                result: "Serial Code +${value.display()}",
+                colorResult: value.color());
+          },
+        ),
         resultStatus: ResultStatus.pass,
         status: SelectTestStatus.selected),
     Question(
         title: "Test 4",
-        child: IrWriteReadScreen(),
+        child: IrWriteReadScreen(
+          onPress: (value) {
+            results[3] = results[3]
+                .copyWith(result: value.display(), colorResult: value.color());
+          },
+        ),
         resultStatus: ResultStatus.pass,
         status: SelectTestStatus.selected),
     Question(
         title: "Test 5",
-        child: CalibPowerScreen(),
+        child: CalibPowerScreen(
+          onPress: (value) {
+            results[4] = results[4]
+                .copyWith(result: value.display(), colorResult: value.color());
+          },
+        ),
         status: SelectTestStatus.select),
     Question(
         title: "Test 6",
-        child: CalibPowerLastScreen(),
+        child: CalibPowerLastScreen(
+          onPress: (value) {
+            results[5] = results[5]
+                .copyWith(result: value.display(), colorResult: value.color());
+          },
+        ),
         status: SelectTestStatus.notSelect),
     Question(
         title: "Test 7",
-        child: StatusLedScreen(),
+        child: StatusLedScreen(
+          onPress: (value) {
+            results[6] = results[6]
+                .copyWith(result: value.display(), colorResult: value.color());
+          },
+        ),
         status: SelectTestStatus.notSelect),
     Question(
         title: "Test 8",
-        child: StatusButtonScreen(),
+        child: StatusButtonScreen(
+          onPress: (value) {
+            results[7] = results[7]
+                .copyWith(result: value.display(), colorResult: value.color());
+          },
+        ),
         status: SelectTestStatus.notSelect),
     Question(
         title: "Test 9",
-        child: VoiceScreen(),
+        child: VoiceScreen(
+          onPress: (value) {
+            results[8] = results[8]
+                .copyWith(result: value.display(), colorResult: value.color());
+          },
+        ),
         status: SelectTestStatus.notSelect),
     Question(
         title: "Test 10",
-        child: BluetoothMacScreen(),
+        child: BluetoothMacScreen(
+          onPress: (value) {
+            results[9] = results[9]
+                .copyWith(result: value.display(), colorResult: value.color());
+          },
+        ),
         status: SelectTestStatus.notSelect),
   ];
   PageController pageController = PageController();

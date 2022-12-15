@@ -6,8 +6,8 @@ import 'package:jig/ui/theme/constant.dart';
 import 'package:jig/ui/theme/text_style.dart';
 
 class BluetoothMacScreen extends StatefulWidget {
-  const BluetoothMacScreen({super.key});
-
+  const BluetoothMacScreen({super.key, this.onPress});
+  final Function(ResultStatus)? onPress;
   @override
   State<BluetoothMacScreen> createState() => _BluetoothMacScreenState();
 }
@@ -15,10 +15,7 @@ class BluetoothMacScreen extends StatefulWidget {
 class _BluetoothMacScreenState extends State<BluetoothMacScreen> {
   @override
   Widget build(BuildContext context) {
-    return BaseTestScreen(
-        resultStatus: ResultStatus.pass,
-        title: "BLUETOOTH MAC",
-        child: body(context));
+    return BaseTestScreen(title: "BLUETOOTH MAC", child: body(context));
   }
 
   Widget body(BuildContext context) {

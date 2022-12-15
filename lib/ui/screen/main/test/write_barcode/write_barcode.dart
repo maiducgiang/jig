@@ -8,8 +8,8 @@ import 'package:jig/ui/theme/constant.dart';
 import 'package:jig/ui/theme/text_style.dart';
 
 class WriteBarcodeScreen extends StatefulWidget {
-  const WriteBarcodeScreen({super.key});
-
+  const WriteBarcodeScreen({super.key, this.onPress});
+  final Function(ResultStatus)? onPress;
   @override
   State<WriteBarcodeScreen> createState() => _WriteBarcodeScreenState();
 }
@@ -19,7 +19,6 @@ class _WriteBarcodeScreenState extends State<WriteBarcodeScreen> {
   Widget build(BuildContext context) {
     return BaseTestScreen(
       title: "GHI MÃ VẠCH",
-      resultStatus: ResultStatus.pass,
       child: Column(
         children: [
           SizedBox(

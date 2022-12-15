@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jig/data/enum/enum_test_status.dart';
 import 'package:jig/ui/shared/base_test_screen.dart';
 import 'package:jig/ui/theme/constant.dart';
 import 'package:jig/ui/theme/text_style.dart';
 
 class CalibPowerLastScreen extends StatefulWidget {
-  const CalibPowerLastScreen({super.key});
-
+  const CalibPowerLastScreen({super.key, this.onPress});
+  final Function(ResultStatus)? onPress;
   @override
   State<CalibPowerLastScreen> createState() => _CalibPowerLastScreenState();
 }

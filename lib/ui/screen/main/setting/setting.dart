@@ -361,6 +361,18 @@ class _SettingScreenState extends State<SettingScreen> {
                         if (selectPortCom == " ") {
                           selectPortCom = state.comPorts![0];
                         }
+                        context.read<SettingCubit>().saveInforOpenPort(
+                            namePort: selectPortCom,
+                            baudRate: int.parse(baudRateController),
+                            parity: int.parse(parityController),
+                            stopBits: int.parse(stopBitsController),
+                            byteSize: int.parse(byteSizeController.text),
+                            readIntervalTimeout:
+                                int.parse(readIntervalTimeoutController.text),
+                            readTotalTimeoutConstant: int.parse(
+                                readTotalTimeoutConstantController.text),
+                            readTotalTimeoutMulti: int.parse(
+                                readTotalTimeoutMultiplierController.text));
                         context.read<SettingCubit>().openPort(
                             namePort: selectPortCom,
                             baudRate: int.parse(baudRateController),

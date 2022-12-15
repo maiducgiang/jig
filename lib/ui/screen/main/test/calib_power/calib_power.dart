@@ -2,14 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jig/data/enum/enum_test_status.dart';
+import 'package:jig/ui/screen/main/test/calib_power/cubit/calib_power_cubit.dart';
+import 'package:jig/ui/screen/main/test/calib_power/cubit/calib_power_state.dart';
 import 'package:jig/ui/shared/base_test_screen.dart';
 import 'package:jig/ui/theme/constant.dart';
 import 'package:jig/ui/theme/text_style.dart';
 
 class CalibPowerScreen extends StatefulWidget {
-  const CalibPowerScreen({super.key});
-
+  const CalibPowerScreen({super.key, this.onPress});
+  final Function(ResultStatus)? onPress;
   @override
   State<CalibPowerScreen> createState() => _CalibPowerScreenState();
 }
@@ -17,7 +21,23 @@ class CalibPowerScreen extends StatefulWidget {
 class _CalibPowerScreenState extends State<CalibPowerScreen> {
   @override
   Widget build(BuildContext context) {
-    return BaseTestScreen(title: "CALIB CÔNG SUẤT", child: body(context));
+    return BlocProvider(
+      create: (context) => CalibPowerCubit()..openPort(),
+      child: BlocConsumer<CalibPowerCubit, CalibPowerState>(
+        listener: (context, state) {
+          if (state.result == ResultStatus.pass ||
+              state.result == ResultStatus.fail) {
+            widget.onPress?.call(state.result!);
+          }
+        },
+        builder: (context, state) {
+          return BaseTestScreen(
+              resultStatus: state.result ?? ResultStatus.doing,
+              title: "CALIB CÔNG SUẤT",
+              child: body(context));
+        },
+      ),
+    );
   }
 
   Widget body(BuildContext context) {
