@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$HomeState {
   bool get isLoading => throw _privateConstructorUsedError;
+  List<Question>? get listQuestion => throw _privateConstructorUsedError;
+  List<ResultModel>? get results => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +31,11 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({bool isLoading, String? error});
+  $Res call(
+      {bool isLoading,
+      List<Question>? listQuestion,
+      List<ResultModel>? results,
+      String? error});
 }
 
 /// @nodoc
@@ -46,6 +52,8 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? listQuestion = freezed,
+    Object? results = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -53,6 +61,14 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      listQuestion: freezed == listQuestion
+          ? _value.listQuestion
+          : listQuestion // ignore: cast_nullable_to_non_nullable
+              as List<Question>?,
+      results: freezed == results
+          ? _value.results
+          : results // ignore: cast_nullable_to_non_nullable
+              as List<ResultModel>?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -68,7 +84,11 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
       __$$_HomeStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, String? error});
+  $Res call(
+      {bool isLoading,
+      List<Question>? listQuestion,
+      List<ResultModel>? results,
+      String? error});
 }
 
 /// @nodoc
@@ -83,6 +103,8 @@ class __$$_HomeStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? listQuestion = freezed,
+    Object? results = freezed,
     Object? error = freezed,
   }) {
     return _then(_$_HomeState(
@@ -90,6 +112,14 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      listQuestion: freezed == listQuestion
+          ? _value._listQuestion
+          : listQuestion // ignore: cast_nullable_to_non_nullable
+              as List<Question>?,
+      results: freezed == results
+          ? _value._results
+          : results // ignore: cast_nullable_to_non_nullable
+              as List<ResultModel>?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -101,16 +131,40 @@ class __$$_HomeStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_HomeState implements _HomeState {
-  const _$_HomeState({required this.isLoading, this.error});
+  _$_HomeState(
+      {required this.isLoading,
+      final List<Question>? listQuestion,
+      final List<ResultModel>? results,
+      this.error})
+      : _listQuestion = listQuestion,
+        _results = results;
 
   @override
   final bool isLoading;
+  final List<Question>? _listQuestion;
+  @override
+  List<Question>? get listQuestion {
+    final value = _listQuestion;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<ResultModel>? _results;
+  @override
+  List<ResultModel>? get results {
+    final value = _results;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final String? error;
 
   @override
   String toString() {
-    return 'HomeState(isLoading: $isLoading, error: $error)';
+    return 'HomeState(isLoading: $isLoading, listQuestion: $listQuestion, results: $results, error: $error)';
   }
 
   @override
@@ -120,11 +174,19 @@ class _$_HomeState implements _HomeState {
             other is _$_HomeState &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            const DeepCollectionEquality()
+                .equals(other._listQuestion, _listQuestion) &&
+            const DeepCollectionEquality().equals(other._results, _results) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      isLoading,
+      const DeepCollectionEquality().hash(_listQuestion),
+      const DeepCollectionEquality().hash(_results),
+      error);
 
   @JsonKey(ignore: true)
   @override
@@ -134,11 +196,18 @@ class _$_HomeState implements _HomeState {
 }
 
 abstract class _HomeState implements HomeState {
-  const factory _HomeState(
-      {required final bool isLoading, final String? error}) = _$_HomeState;
+  factory _HomeState(
+      {required final bool isLoading,
+      final List<Question>? listQuestion,
+      final List<ResultModel>? results,
+      final String? error}) = _$_HomeState;
 
   @override
   bool get isLoading;
+  @override
+  List<Question>? get listQuestion;
+  @override
+  List<ResultModel>? get results;
   @override
   String? get error;
   @override

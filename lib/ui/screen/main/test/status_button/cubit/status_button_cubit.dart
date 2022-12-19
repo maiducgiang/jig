@@ -5,13 +5,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jig/data/enum/enum_test_status.dart';
 import 'package:jig/data/setup_data_port/setup_data_port.dart';
-import 'package:jig/ui/screen/main/home/home_screen.dart';
-import 'package:jig/ui/screen/main/test/info_device/cubit/info_device_state.dart';
+import 'package:jig/ui/screen/main/test/status_button/cubit/status_button_state.dart';
 import 'package:serial_port_win32/serial_port_win32.dart';
 import 'package:sp_util/sp_util.dart';
 
-class InfoDeviceCubit extends Cubit<InfoDeviceState> {
-  InfoDeviceCubit() : super(InfoDeviceState.initial());
+class StatusButtonCubit extends Cubit<StatusButtonState> {
+  StatusButtonCubit() : super(StatusButtonState.initial());
   late SerialPort port;
   String s = "";
   Future<void> openPort() async {
@@ -32,8 +31,9 @@ class InfoDeviceCubit extends Cubit<InfoDeviceState> {
       if (port.isOpened == false) port.open();
       emit(state.copyWith(isActive: port.isOpened));
       handleReceived();
+
       Timer(const Duration(seconds: 1), () {
-        sendData("[MODEL_INFO,1]");
+        sendData("[BLE_WIFI,1]");
       });
       Timer(const Duration(seconds: 2), () {
         if (state.result == ResultStatus.check) {
@@ -66,13 +66,11 @@ class InfoDeviceCubit extends Cubit<InfoDeviceState> {
   Future<void> handleReceived() async {
     if (state.isActive == true) {
       port.readBytesOnListen(1024, (value) {
-        //print("read 2 ${port.portName}:${String.fromCharCodes(value)}\n");
         s = s + String.fromCharCodes(value);
-
         if (s.contains("\$")) {
           s = s.replaceAll(RegExp('[^ -~\n]'), '');
+          print("read 2 ${port.portName}:$s\n");
           if (s.contains("PASS")) {
-            print("read 2 ${port.portName}:$s\n");
             closePort();
             emit(state.copyWith(result: ResultStatus.pass, isLoading: false));
           } else {

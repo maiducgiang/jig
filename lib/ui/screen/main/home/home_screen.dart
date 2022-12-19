@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jig/data/enum/enum_test_status.dart';
 import 'package:jig/data/model/question/question_model.dart';
 import 'package:jig/data/model/result/result_model.dart';
+import 'package:jig/ui/loading_screen.dart';
 import 'package:jig/ui/screen/main/home/cubit/home_cubit.dart';
 import 'package:jig/ui/screen/main/home/cubit/home_state.dart';
 import 'package:jig/ui/screen/main/home/widget/result.dart';
@@ -14,7 +15,7 @@ import 'package:jig/ui/screen/main/test/info_device/info_device.dart';
 import 'package:jig/ui/screen/main/test/ir/ir_write_read.dart';
 import 'package:jig/ui/screen/main/test/model_test.dart/model_test.dart';
 import 'package:jig/ui/screen/main/test/status_button/status_button.dart';
-import 'package:jig/ui/screen/main/test/status_led/status_lead.dart';
+import 'package:jig/ui/screen/main/test/status_led/status_led.dart';
 import 'package:jig/ui/screen/main/test/voice/voice.dart';
 import 'package:jig/ui/screen/main/test/write_barcode/write_barcode.dart';
 import 'package:jig/ui/shared/base_screen.dart';
@@ -29,149 +30,150 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-List<ResultModel> results = [
-  ResultModel(result: "Model ", title: "Model:", status: true),
-  ResultModel(
-      result: "Firmwave version ", title: "Firmware version:", status: true),
-  ResultModel(result: "Serial Code:", title: "Firmware version:", status: true),
-  ResultModel(
-      result: "FAIL",
-      title: "Kết nối bluetooth, Wifi:",
-      status: true,
-      colorResult: primaryColor3),
-  ResultModel(
-      result: "FAIL",
-      title: "Thu phát hồng ngoại:",
-      status: true,
-      colorResult: primaryColor3),
-  ResultModel(
-      result: "FAIL",
-      title: "Calib công suât:",
-      status: true,
-      colorResult: primaryColor3),
-  ResultModel(
-      result: "FAIL",
-      title: "Calib công suất sau hiệu chỉnh:",
-      status: true,
-      colorResult: primaryColor3),
-  ResultModel(
-      result: "FAIL",
-      title: "Trạng thái đèn LED:",
-      status: true,
-      colorResult: primaryColor3),
-  ResultModel(
-      result: "FAIL",
-      title: "Trạng thái đèn nút bấm:",
-      status: true,
-      colorResult: primaryColor3),
-  ResultModel(
-      result: "FAIL",
-      title: "Bluetooth MAC:",
-      status: true,
-      colorResult: primaryColor3),
-];
+//  late List<ResultModel> results = [
+//   ResultModel(result: "Model ", title: "Model:", status: true),
+//   ResultModel(
+//       result: "Firmwave version ", title: "Firmware version:", status: true),
+//   ResultModel(result: "Serial Code:", title: "Firmware version:", status: true),
+//   ResultModel(
+//       result: "FAIL",
+//       title: "Kết nối bluetooth, Wifi:",
+//       status: true,
+//       colorResult: primaryColor3),
+//   ResultModel(
+//       result: "FAIL",
+//       title: "Thu phát hồng ngoại:",
+//       status: true,
+//       colorResult: primaryColor3),
+//   ResultModel(
+//       result: "FAIL",
+//       title: "Calib công suât:",
+//       status: true,
+//       colorResult: primaryColor3),
+//   ResultModel(
+//       result: "FAIL",
+//       title: "Calib công suất sau hiệu chỉnh:",
+//       status: true,
+//       colorResult: primaryColor3),
+//   ResultModel(
+//       result: "FAIL",
+//       title: "Trạng thái đèn LED:",
+//       status: true,
+//       colorResult: primaryColor3),
+//   ResultModel(
+//       result: "FAIL",
+//       title: "Trạng thái đèn nút bấm:",
+//       status: true,
+//       colorResult: primaryColor3),
+//   ResultModel(
+//       result: "FAIL",
+//       title: "Bluetooth MAC:",
+//       status: true,
+//       colorResult: primaryColor3),
+// ];
 
 class _HomeScreenState extends State<HomeScreen> {
   late String check = "";
-  final List<Question> listQuestion = [
-    Question(
-      title: "Test 1",
-      child: InfoDeviceScreen(
-        onPress: (value) {
-          results[0] = results[0].copyWith(
-              result: "Model +${value.display()}", colorResult: value.color());
-        },
-      ),
-      resultStatus: ResultStatus.fail,
-      status: SelectTestStatus.selected,
-    ),
-    Question(
-        title: "Test 2",
-        child: WriteBarcodeScreen(
-          onPress: (value) {
-            results[1] = results[1].copyWith(
-                result: "Firmwave version +${value.display()}",
-                colorResult: value.color());
-          },
-        ),
-        resultStatus: ResultStatus.pass,
-        status: SelectTestStatus.selected),
-    Question(
-        title: "Test 3",
-        child: BluetoothScreen(
-          onPress: (value) {
-            results[2] = results[2].copyWith(
-                result: "Serial Code +${value.display()}",
-                colorResult: value.color());
-          },
-        ),
-        resultStatus: ResultStatus.pass,
-        status: SelectTestStatus.selected),
-    Question(
-        title: "Test 4",
-        child: IrWriteReadScreen(
-          onPress: (value) {
-            results[3] = results[3]
-                .copyWith(result: value.display(), colorResult: value.color());
-          },
-        ),
-        resultStatus: ResultStatus.pass,
-        status: SelectTestStatus.selected),
-    Question(
-        title: "Test 5",
-        child: CalibPowerScreen(
-          onPress: (value) {
-            results[4] = results[4]
-                .copyWith(result: value.display(), colorResult: value.color());
-          },
-        ),
-        status: SelectTestStatus.select),
-    Question(
-        title: "Test 6",
-        child: CalibPowerLastScreen(
-          onPress: (value) {
-            results[5] = results[5]
-                .copyWith(result: value.display(), colorResult: value.color());
-          },
-        ),
-        status: SelectTestStatus.notSelect),
-    Question(
-        title: "Test 7",
-        child: StatusLedScreen(
-          onPress: (value) {
-            results[6] = results[6]
-                .copyWith(result: value.display(), colorResult: value.color());
-          },
-        ),
-        status: SelectTestStatus.notSelect),
-    Question(
-        title: "Test 8",
-        child: StatusButtonScreen(
-          onPress: (value) {
-            results[7] = results[7]
-                .copyWith(result: value.display(), colorResult: value.color());
-          },
-        ),
-        status: SelectTestStatus.notSelect),
-    Question(
-        title: "Test 9",
-        child: VoiceScreen(
-          onPress: (value) {
-            results[8] = results[8]
-                .copyWith(result: value.display(), colorResult: value.color());
-          },
-        ),
-        status: SelectTestStatus.notSelect),
-    Question(
-        title: "Test 10",
-        child: BluetoothMacScreen(
-          onPress: (value) {
-            results[9] = results[9]
-                .copyWith(result: value.display(), colorResult: value.color());
-          },
-        ),
-        status: SelectTestStatus.notSelect),
-  ];
+
+  //      List<Question> listQuestion = [
+  //   Question(
+  //     title: "Test 1",
+  //     child: InfoDeviceScreen(
+  //       onPress: (value) {
+  //         results[0] = results[0].copyWith(
+  //             result: "Model +${value.display()}", colorResult: value.color());
+  //       },
+  //     ),
+  //     resultStatus: ResultStatus.fail,
+  //     status: SelectTestStatus.selected,
+  //   ),
+  //   Question(
+  //       title: "Test 2",
+  //       child: WriteBarcodeScreen(
+  //         onPress: (value) {
+  //           results[1] = results[1].copyWith(
+  //               result: "Firmwave version +${value.display()}",
+  //               colorResult: value.color());
+  //         },
+  //       ),
+  //       resultStatus: ResultStatus.pass,
+  //       status: SelectTestStatus.selected),
+  //   Question(
+  //       title: "Test 3",
+  //       child: BluetoothScreen(
+  //         onPress: (value) {
+  //           results[2] = results[2].copyWith(
+  //               result: "Serial Code +${value.display()}",
+  //               colorResult: value.color());
+  //         },
+  //       ),
+  //       resultStatus: ResultStatus.pass,
+  //       status: SelectTestStatus.selected),
+  //   Question(
+  //       title: "Test 4",
+  //       child: IrWriteReadScreen(
+  //         onPress: (value) {
+  //           results[3] = results[3]
+  //               .copyWith(result: value.display(), colorResult: value.color());
+  //         },
+  //       ),
+  //       resultStatus: ResultStatus.pass,
+  //       status: SelectTestStatus.selected),
+  //   Question(
+  //       title: "Test 5",
+  //       child: CalibPowerScreen(
+  //         onPress: (value) {
+  //           results[4] = results[4]
+  //               .copyWith(result: value.display(), colorResult: value.color());
+  //         },
+  //       ),
+  //       status: SelectTestStatus.select),
+  //   Question(
+  //       title: "Test 6",
+  //       child: CalibPowerLastScreen(
+  //         onPress: (value) {
+  //           results[5] = results[5]
+  //               .copyWith(result: value.display(), colorResult: value.color());
+  //         },
+  //       ),
+  //       status: SelectTestStatus.notSelect),
+  //   Question(
+  //       title: "Test 7",
+  //       child: StatusLedScreen(
+  //         onPress: (value) {
+  //           results[6] = results[6]
+  //               .copyWith(result: value.display(), colorResult: value.color());
+  //         },
+  //       ),
+  //       status: SelectTestStatus.notSelect),
+  //   Question(
+  //       title: "Test 8",
+  //       child: StatusButtonScreen(
+  //         onPress: (value) {
+  //           results[7] = results[7]
+  //               .copyWith(result: value.display(), colorResult: value.color());
+  //         },
+  //       ),
+  //       status: SelectTestStatus.notSelect),
+  //   Question(
+  //       title: "Test 9",
+  //       child: VoiceScreen(
+  //         onPress: (value) {
+  //           results[8] = results[8]
+  //               .copyWith(result: value.display(), colorResult: value.color());
+  //         },
+  //       ),
+  //       status: SelectTestStatus.notSelect),
+  //   Question(
+  //       title: "Test 10",
+  //       child: BluetoothMacScreen(
+  //         onPress: (value) {
+  //           results[9] = results[9]
+  //               .copyWith(result: value.display(), colorResult: value.color());
+  //         },
+  //       ),
+  //       status: SelectTestStatus.notSelect),
+  // ];
   PageController pageController = PageController();
   int selected = 0;
   TestStatus status = TestStatus.stop;
@@ -185,15 +187,16 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         builder: (context, state) {
           context.read<HomeCubit>().createUser();
+          if (state.isLoading == true) {
+            return const LoadingScreen();
+          }
           return BaseScreenWindow(
             child: Expanded(
               child: Container(
                 width: double.infinity,
                 height: double.infinity,
                 decoration: const BoxDecoration(color: Colors.white),
-                child: body(
-                  context,
-                ),
+                child: body(context, state),
               ),
             ),
           );
@@ -202,9 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget body(
-    BuildContext context,
-  ) {
+  Widget body(BuildContext context, HomeState state) {
     return Column(children: [
       Container(
         height: 120.h,
@@ -219,7 +220,7 @@ class _HomeScreenState extends State<HomeScreen> {
               childAspectRatio: 2.5,
               children: [
                 itemFirst(context),
-                for (int i = 0; i < listQuestion.length; i++)
+                for (int i = 0; i < state.listQuestion!.length; i++)
                   InkWell(
                       onTap: () {
                         if (status == TestStatus.doing) {
@@ -237,9 +238,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         context: context,
                         index: i,
                         select: selected,
-                        title: listQuestion[i].title,
+                        title: state.listQuestion![i].title,
                       )),
-                itemSubmit(context)
+                itemSubmit(context, state)
               ]),
         ),
       ),
@@ -254,17 +255,17 @@ class _HomeScreenState extends State<HomeScreen> {
           : (status == TestStatus.doing
               ? Expanded(
                   child: PageView.builder(
-                      itemCount: listQuestion.length,
+                      itemCount: state.listQuestion!.length,
                       controller: pageController,
                       itemBuilder: (context, index) {
-                        return listQuestion[index].child;
+                        return state.listQuestion![index].child;
                         // return BaseTestScreen(
                         //     resultStatus: listQuestion[index].resultStatus!,
                         //     child: listQuestion[index].child);
                       }))
               : Expanded(
                   child: ResultScreen(
-                  results: results,
+                  results: state.results!,
                 )))
     ]);
   }
@@ -297,12 +298,11 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget itemSubmit(
-    BuildContext context,
-  ) {
+  Widget itemSubmit(BuildContext context, HomeState state) {
     return InkWell(
       onTap: (() {
         setState(() {
+          context.read<HomeCubit>().getResult();
           status = TestStatus.end;
         });
       }),

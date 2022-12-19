@@ -9,6 +9,8 @@ import 'package:jig/ui/screen/main/test/model_test.dart/cubit/model_test_state.d
 import 'package:serial_port_win32/serial_port_win32.dart';
 import 'package:sp_util/sp_util.dart';
 
+import '../../../../../../data/enum/enum_test_status.dart';
+
 class ModelTestCubit extends Cubit<ModelTestState> {
   ModelTestCubit() : super(ModelTestState.initial());
   late SerialPort port;
@@ -32,13 +34,18 @@ class ModelTestCubit extends Cubit<ModelTestState> {
       if (port.isOpened == false) port.open();
       emit(state.copyWith(isActive: port.isOpened));
       handleReceived();
-      sendData("[TEST_JIG_EN,1]");
-      // if (state.isActive == true) {
-      //   _timer1 = Timer(const Duration(seconds: 2), () async {
 
-      //     _timer1.cancel();
-      //   });
-      // }
+      Timer(const Duration(seconds: 1), () {
+        sendData("[TEST_JIG_EN,1]");
+      });
+      Timer(const Duration(seconds: 2), () {
+        if (state.result == null) {
+          emit(state.copyWith(
+              result: false,
+              isLoading: false,
+              error: "không gửi được bài test"));
+        }
+      });
     } else {
       emit(state.copyWith(
           isLoading: false, error: "không kết nối tới thiết bị"));

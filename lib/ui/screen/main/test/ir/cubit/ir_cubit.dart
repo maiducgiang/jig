@@ -32,13 +32,17 @@ class IrCubit extends Cubit<IrState> {
       if (port.isOpened == false) port.open();
       emit(state.copyWith(isActive: port.isOpened));
       handleReceived();
-      sendData("[IR_TEST,1]");
-      // if (state.isActive == true) {
-      //   _timer1 = Timer(const Duration(seconds: 2), () async {
-
-      //     _timer1.cancel();
-      //   });
-      // }
+      Timer(const Duration(seconds: 1), () {
+        sendData('[IR_TEST,1]');
+      });
+      Timer(const Duration(seconds: 2), () {
+        if (state.result == ResultStatus.check) {
+          emit(state.copyWith(
+              result: ResultStatus.fail,
+              isLoading: false,
+              error: "không gửi được bài test"));
+        }
+      });
     } else {
       emit(state.copyWith(
           isLoading: false, error: "không kết nối tới thiết bị"));
@@ -62,9 +66,7 @@ class IrCubit extends Cubit<IrState> {
   Future<void> handleReceived() async {
     if (state.isActive == true) {
       port.readBytesOnListen(1024, (value) {
-        print("read 2 : ${String.fromCharCodes(value)}\n");
         s = s + String.fromCharCodes(value);
-
         if (s.contains("\$")) {
           s = s.replaceAll(RegExp('[^ -~\n]'), '');
           print("read final ${port.portName}:$s\n");

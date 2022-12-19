@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jig/injection.dart';
 import 'package:jig/ui/loading_screen.dart';
 import 'package:jig/ui/screen/main/test/model_test.dart/cubit/model_test_cubit.dart';
 import 'package:jig/ui/screen/main/test/model_test.dart/cubit/model_test_state.dart';
 import 'package:jig/ui/shared/widget/button/primary_button.dart';
+import 'package:jig/ui/shared/widget/button/toast.dart';
 import 'package:jig/ui/shared/widget/text_field/text_form_field.dart';
 import 'package:jig/ui/theme/constant.dart';
 import 'package:jig/ui/theme/text_style.dart';
@@ -33,6 +35,13 @@ class _ModelTestScreenState extends State<ModelTestScreen> {
         listener: (context, state) {
           if (state.result == true) {
             widget.onPress.call();
+          }
+          if (state.error != "") {
+            getIt.get<IToast>().show(
+                title: 'Lỗi',
+                message: state.error,
+                hasDismissButton: true,
+                duration: const Duration(milliseconds: 1000));
           }
         },
         builder: (context, state) {

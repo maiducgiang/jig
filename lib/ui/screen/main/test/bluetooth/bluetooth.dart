@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jig/injection.dart';
 import 'package:jig/ui/screen/main/test/bluetooth/cubit/bluetooth_cubit.dart';
 import 'package:jig/ui/screen/main/test/bluetooth/cubit/bluetooth_state.dart';
 import 'package:jig/ui/shared/base_test_screen.dart';
+import 'package:jig/ui/shared/widget/button/toast.dart';
 import 'package:jig/ui/theme/constant.dart';
 import 'package:jig/ui/theme/text_style.dart';
 
@@ -26,6 +28,13 @@ class _BluetoothScreenState extends State<BluetoothScreen> {
           if (state.result == ResultStatus.pass ||
               state.result == ResultStatus.fail) {
             widget.onPress?.call(state.result!);
+          }
+          if (state.error != "") {
+            getIt.get<IToast>().show(
+                title: "Lỗi",
+                message: state.error,
+                hasDismissButton: true,
+                duration: const Duration(milliseconds: 1000));
           }
         },
         builder: (context, state) {

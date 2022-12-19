@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jig/data/enum/enum_model_test.dart';
 import 'package:jig/ui/router/router.gr.dart';
 import 'package:jig/ui/screen/main/setting/widget/dropdown.dart';
 import 'package:jig/ui/shared/base_screen.dart';
@@ -94,7 +95,7 @@ class _SettingPrimaryScreenState extends State<SettingPrimaryScreen> {
                     height: defaultPaddingScreen / 4,
                   ),
                   DropdowCom(
-                    comPorts: baudRateList,
+                    comPorts: ModelTest.getListModelTest(),
                     callback: ((data) {
                       // context.read<HomeCubit>().closePort();
                       // context.read<HomeCubit>().handleReceived(data);

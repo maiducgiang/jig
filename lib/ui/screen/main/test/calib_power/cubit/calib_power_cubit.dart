@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -30,7 +31,18 @@ class CalibPowerCubit extends Cubit<CalibPowerState> {
       if (port.isOpened == false) port.open();
       emit(state.copyWith(isActive: port.isOpened));
       handleReceived();
-      sendData("[CALIB_POWER,1]");
+
+      Timer(const Duration(seconds: 1), () {
+        sendData("[CALIB_POWER,1]");
+      });
+      Timer(const Duration(seconds: 2), () {
+        if (state.result == ResultStatus.check) {
+          emit(state.copyWith(
+              result: ResultStatus.fail,
+              isLoading: false,
+              error: "không gửi được bài test"));
+        }
+      });
     } else {
       emit(state.copyWith(
           isLoading: false, error: "không kết nối tới thiết bị"));

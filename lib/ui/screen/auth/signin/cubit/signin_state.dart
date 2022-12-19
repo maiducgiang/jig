@@ -1,4 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:jig/data/model/question/question_model.dart';
+import 'package:jig/data/model/result/result_model.dart';
 
 part 'signin_state.freezed.dart';
 

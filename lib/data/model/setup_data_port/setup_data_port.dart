@@ -26,4 +26,28 @@ class SetupDataPortModel {
       _$SetupDataPortModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$SetupDataPortModelToJson(this);
+
+  SetupDataPortModel copyWith(
+    String? namePort,
+    int? baudRate,
+    int? parity,
+    int? stopBits,
+    int? byteSize,
+    int? readIntervalTimeout,
+    int? readTotalTimeoutConstant,
+    int? readTotalTimeoutMulti,
+  ) {
+    return SetupDataPortModel(
+      namePort: namePort ?? this.namePort,
+      baudRate: baudRate ?? this.baudRate,
+      parity: parity ?? this.parity,
+      stopBits: stopBits ?? this.stopBits,
+      byteSize: byteSize ?? this.byteSize,
+      readIntervalTimeout: readIntervalTimeout ?? this.readIntervalTimeout,
+      readTotalTimeoutConstant:
+          readTotalTimeoutConstant ?? this.readTotalTimeoutConstant,
+      readTotalTimeoutMulti:
+          readTotalTimeoutMulti ?? this.readTotalTimeoutMulti,
+    );
+  }
 }
