@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:bloc/bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jig/data/model/setup_data_port/setup_data_port.dart';
 import 'package:jig/data/repository/auth/auth_repository.dart';
 import 'package:jig/data/repository/main/main_repository.dart';
-import 'package:jig/data/setup_data_port/setup_data_port.dart';
+
 import 'package:jig/ui/screen/main/setting/cubit/setting_state.dart';
 import 'package:serial_port_win32/serial_port_win32.dart';
 import 'package:sp_util/sp_util.dart';

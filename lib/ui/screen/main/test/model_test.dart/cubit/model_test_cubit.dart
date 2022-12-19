@@ -3,7 +3,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jig/data/setup_data_port/setup_data_port.dart';
+
+import 'package:jig/data/model/setup_data_port/setup_data_port.dart';
 import 'package:jig/ui/screen/main/home/home_screen.dart';
 import 'package:jig/ui/screen/main/test/model_test.dart/cubit/model_test_state.dart';
 import 'package:serial_port_win32/serial_port_win32.dart';
